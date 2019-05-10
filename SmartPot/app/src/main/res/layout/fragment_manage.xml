@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/frame"
+    tools:context=".fragments.ManageFragment">
+
+
+
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/addButton"-->
+    <!--android:text="레이아웃 추가"/>-->
+
+    <LinearLayout
+        android:id="@+id/con"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/addButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="72dp"
+            android:layout_height="77dp"
+            android:background="@android:color/transparent"
+            android:padding="0dp"
+            android:src="@drawable/ic_add_circle_outline_black_24dp" />
+
+        <Button
+            android:id="@+id/add_layout"
+            android:layout_width="72dp"
+            android:layout_height="77dp"
+            android:text="추가"/>
+
+        <Button
+            android:id="@+id/autoButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="자동 수급" />
+
+        <Button
+            android:id="@+id/manualButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="수동 수급" />
+
+
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/b1"-->
+        <!--android:text="내부 레이아웃 버튼"/>-->
+    </LinearLayout>
+
+
+</FrameLayout>

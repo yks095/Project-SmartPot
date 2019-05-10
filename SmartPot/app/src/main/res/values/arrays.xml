@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="universityMajor">
+        <item>소프트웨어학과</item>
+        <item>컴퓨터공학과</item>
+        <item>기계공학과</item>
+    </string-array>
+
+    <string-array name="graduateMajor">
+        <item>소프트웨어교육</item>
+        <item>컴퓨터교육</item>
+        <item>기계교육</item>
+    </string-array>
+
+    <string-array name="flower">
+        <item>없음</item>
+        <item>알로에</item>
+        <item>돈나무</item>
+        <item>스투키</item>
+        <item>뱅갈고무나무</item>
+        <item>스킨답서스</item>
+    </string-array>
+
+</resources>
