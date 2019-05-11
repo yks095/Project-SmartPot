@@ -1,6 +1,5 @@
 <?php
-  $con = mysqli_connect("localhost", "root", "didrltjr3", "android", "3306");
-
+$con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
   $auto = $_POST["auto"];
   $potCode = $_POST["potCode"];
 
