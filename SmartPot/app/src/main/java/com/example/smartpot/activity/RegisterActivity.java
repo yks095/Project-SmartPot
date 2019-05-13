@@ -231,7 +231,6 @@ public class RegisterActivity extends AppCompatActivity {
                 RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userGender, userEmail, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
-
                 PotRequest potRequest = new PotRequest(potCode, potName, userID, responseListener);
                 RequestQueue queue2 = Volley.newRequestQueue(RegisterActivity.this);
                 queue2.add(potRequest);

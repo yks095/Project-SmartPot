@@ -11,17 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.smartpot.SubLayout"></activity>
-        <activity android:name="com.example.smartpot.activity.FlowerRegisterActivity" />
-        <activity android:name="com.example.smartpot.activity.MainActivity" />
-        <activity android:name="com.example.smartpot.activity.LoginActivity">
+        <activity android:name=".activity.UpdatePasswordActivity"></activity>
+        <activity android:name=".activity.UpdateMemberActivity" />
+        <activity android:name=".SubLayout" />
+        <activity android:name=".activity.FlowerRegisterActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.smartpot.activity.RegisterActivity">
+        <activity android:name=".activity.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

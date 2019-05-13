@@ -7,61 +7,12 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="8dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/dicButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="꽃 사전"
-            android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/manageButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="화분 정보"
-            android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/memberButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="회원정보"
-            android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/notice"
+            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -89,117 +40,117 @@
                 android:text="수동 수급" />
 
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_refresh_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <!--<android.support.v4.widget.SwipeRefreshLayout-->
+            <!--android:id="@+id/swipe_refresh_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="40dp">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingTop="40dp">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal">-->
 
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="30dp"
-                            android:background="@color/colorGray"
-                            android:gravity="center"
-                            android:text="일.시"
-                            android:textSize="25dp" />
+            <!--<TextView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@color/colorGray"-->
+            <!--android:gravity="center"-->
+            <!--android:text="일.시"-->
+            <!--android:textSize="25dp" />-->
 
-                        <TextView
-                            android:id="@+id/weather_tv_time"
-                            android:layout_width="250dp"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="일.시"
-                            android:textSize="25dp" />
+            <!--<TextView-->
+            <!--android:id="@+id/weather_tv_time"-->
+            <!--android:layout_width="250dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="일.시"-->
+            <!--android:textSize="25dp" />-->
 
-                    </LinearLayout>
+            <!--</LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal">
-
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="30dp"
-                            android:background="@color/colorGray"
-                            android:gravity="center"
-                            android:text="현재일기"
-                            android:textSize="25dp" />
-
-                        <TextView
-                            android:id="@+id/weather_tv_now"
-                            android:layout_width="250dp"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="현재일기"
-                            android:textSize="25dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal">-->
 
 
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="30dp"
-                            android:background="@color/colorGray"
-                            android:gravity="center"
-                            android:text="현재 기온"
-                            android:textSize="25dp" />
+            <!--<TextView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@color/colorGray"-->
+            <!--android:gravity="center"-->
+            <!--android:text="현재일기"-->
+            <!--android:textSize="25dp" />-->
 
-                        <TextView
-                            android:id="@+id/weather_tv_temp"
-                            android:layout_width="250dp"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="현재기온"
-                            android:textSize="25dp" />
+            <!--<TextView-->
+            <!--android:id="@+id/weather_tv_now"-->
+            <!--android:layout_width="250dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="현재일기"-->
+            <!--android:textSize="25dp" />-->
 
-                    </LinearLayout>
+            <!--</LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal">
-
-
-                        <TextView
-                            android:layout_width="100dp"
-
-                            android:layout_height="30dp"
-                            android:background="@color/colorGray"
-                            android:gravity="center"
-                            android:text="습도"
-                            android:textSize="25dp" />
-
-                        <TextView
-                            android:id="@+id/weather_tv_mois"
-                            android:layout_width="250dp"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:text="습도"
-                            android:textSize="25dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal">-->
 
 
-            </android.support.v4.widget.SwipeRefreshLayout>
+            <!--<TextView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@color/colorGray"-->
+            <!--android:gravity="center"-->
+            <!--android:text="현재 기온"-->
+            <!--android:textSize="25dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/weather_tv_temp"-->
+            <!--android:layout_width="250dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="현재기온"-->
+            <!--android:textSize="25dp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal">-->
+
+
+            <!--<TextView-->
+            <!--android:layout_width="100dp"-->
+
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@color/colorGray"-->
+            <!--android:gravity="center"-->
+            <!--android:text="습도"-->
+            <!--android:textSize="25dp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/weather_tv_mois"-->
+            <!--android:layout_width="250dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="습도"-->
+            <!--android:textSize="25dp" />-->
+
+            <!--</LinearLayout-->>-->
+
+            <!--</LinearLayout>-->
+
+
+            <!--</android.support.v4.widget.SwipeRefreshLayout>-->
 
 
         </LinearLayout>
@@ -211,6 +162,72 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/homeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="HOME"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/climateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="날씨"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/dicButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="사전"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/memberButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="회원정보"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
     </FrameLayout>
+
+
 
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.example.smartpot.requests;
 
+import android.content.res.Resources;
+
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
@@ -8,7 +10,7 @@ import java.util.Map;
 
 public class WaterRequest extends StringRequest {
 
-    final static private String URL = "http://222.97.212.74/WaterRequest.php";
+    final static private String URL = "http://117.16.94.138/WaterRequest.php";
     private Map<String, String> parameters;
 
     public WaterRequest(String auto, String potCode, Response.Listener<String> listener)   {
