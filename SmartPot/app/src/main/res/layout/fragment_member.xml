@@ -68,6 +68,7 @@ tools:context=".fragments.DictionaryFragment">
         <TextView
             android:layout_width="280dp"
             android:layout_height="wrap_content"
+            android:id="@+id/nowUserEmail"
             android:text="메일"
             android:textSize="20dp"
             android:layout_gravity="center"
@@ -83,6 +84,7 @@ tools:context=".fragments.DictionaryFragment">
         <TextView
             android:layout_width="280dp"
             android:layout_height="wrap_content"
+            android:id="@+id/nowPotname"
             android:text="화분명"
             android:textSize="20dp"
             android:layout_gravity="center"
