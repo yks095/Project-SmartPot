@@ -1,6 +1,7 @@
 package com.example.smartpot.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,21 +10,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
 import com.example.smartpot.requests.LoginRequest;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
 
     private AlertDialog dialog;
-
+    private static int rowNum;
     private static String id="";
-
-
+    PhpDo task;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +54,18 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
                 final String userId = idText.getText().toString();
                 String userPassword = passwordText.getText().toString();
+                id = userId;
+
+                task = new PhpDo();
+                task.execute(userId);
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -56,14 +75,20 @@ public class LoginActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
                             if(success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                id = userId;
                                 dialog = builder.setMessage("로그인에 성공했습니다.")
                                         .setPositiveButton("확인", null)
                                         .create();
                                 dialog.show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                LoginActivity.this.startActivity(intent);
-                                finish();
+
+                                if(rowNum == 0)  {
+                                    Intent intent = new Intent(LoginActivity.this, FlowerRegisterActivity.class);
+                                    LoginActivity.this.startActivity(intent);
+                                }
+                                else {
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    LoginActivity.this.startActivity(intent);
+                                }
+
                             }
 
                             else{
@@ -105,5 +130,54 @@ public class LoginActivity extends AppCompatActivity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+
+    private class PhpDo extends AsyncTask<String, Void, String> {
+
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... arg) {
+            try{
+                String userID = arg[0];
+
+                String link = "http://117.16.94.138/PotRow.php?userID="+userID;
+                URL url = new URL(link);
+                HttpClient client = new DefaultHttpClient();
+                HttpGet request = new HttpGet();
+                request.setURI(new URI(link));
+                HttpResponse response = client.execute(request);
+                BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+                StringBuffer sb = new StringBuffer("");
+                String line = "";
+
+                while((line = in.readLine()) != null) {
+                    sb.append(line);
+                    break;
+                }
+
+                in.close();
+
+                String s = sb.toString();
+                rowNum = Integer.valueOf(s);
+                System.out.println("rownum22 = " + rowNum);
+
+                return sb.toString();
+            } catch (Exception e) {
+                return new String("Exception" + e.getMessage());
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            rowNum = Integer.valueOf(result);
+            System.out.println("rownum = " + rowNum);
+        }
+
     }
 }
