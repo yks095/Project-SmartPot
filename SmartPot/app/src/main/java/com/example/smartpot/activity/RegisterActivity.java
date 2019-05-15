@@ -46,8 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         RadioGroup genderGroup = (RadioGroup) findViewById(R.id.genderGroup);
-        int gederGroupID = genderGroup.getCheckedRadioButtonId();
-        userGender = ((RadioButton) findViewById(gederGroupID)).getText().toString();
+        int genderGroupID = genderGroup.getCheckedRadioButtonId();
+        userGender = ((RadioButton) findViewById(genderGroupID)).getText().toString();
 
         genderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

@@ -10,19 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.example.smartpot.R;
 import com.example.smartpot.activity.LoginActivity;
 import com.example.smartpot.activity.UpdateMemberActivity;
 import com.example.smartpot.activity.UpdatePasswordActivity;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
@@ -102,6 +102,9 @@ public class MemberFragment extends Fragment {
         return view;
     }
 
+    private static String email="";
+    private static String potName="";
+
     private class phpdo extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
@@ -138,7 +141,9 @@ public class MemberFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
+
             nowUserEmail.setText(result);
+            email = result;
         }
     }
 
@@ -178,7 +183,9 @@ public class MemberFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
+
             nowPotName.setText(result);
+            potName = result;
         }
     }
 
@@ -196,5 +203,21 @@ public class MemberFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        MemberFragment.email = email;
+    }
+
+    public static String getPotName() {
+        return potName;
+    }
+
+    public static void setPotName(String potName) {
+        MemberFragment.potName = potName;
     }
 }

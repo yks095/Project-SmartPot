@@ -37,6 +37,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/hintMail"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -50,6 +51,7 @@
                 android:textColorHint="#ffffff" />
 
             <EditText
+                android:id="@+id/hintPotName"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
