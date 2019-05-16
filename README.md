@@ -53,3 +53,14 @@
       - `potCode`가 등록되지 않은 회원일 시 화분 등록 화면으로 이동
     - 화분 등록
       - 화분 등록시 `startday` 가 현재 날짜로 DB에 저장
+
+  - 아두이노
+    - 안드로이드의 `php`파일과의 구분을 위해 `htdocs`의 `GetManual.php`, `GetPumptimeValue.php`, `GetStatus.php`, `SetIdCheck.php`, `SetManual.php`, `UpdateSensors.php`를 arduino폴더 안으로 이동
+
+    - `android`에서 `potCode`에 대한 검증을 하기 때문에, `idCheck`애트리뷰트는 필요 없다고 생각하여, 애트리뷰트 제거
+
+    - `arduino`에서 php로 값을 전달할 때, 값이 전달되지 않는 `issue`발생
+      - `서버 log`의 `access`에는 `200`이 찍힘
+      - `error`에는 `PHP Notice:  Undefined index:`라고 찍힘
+      - `PHP Notice:  Undefined index:`는 php에서 초기화되지 않은 변수를 사용하여 생긴 에러라고 search됨, 하지만 php에는 그런 변수가 없었음
+      - 해결 : `connect` 후 `POST`방식으로 `php`에 값을 전달한 후, 1초 동안 `delay`를 주었더니 해결됨

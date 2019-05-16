@@ -1,6 +1,8 @@
 <?php
   $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
-  $query = "SELECT flower FROM smartpot where potName = 'test' ";
+  $potCode = $_POST["id"];
+
+  $query = "SELECT flower FROM smartpot where potCode = '$potCode' ";
   $result = mysqli_query($con, $query);
   $row = mysqli_fetch_array($result);
 

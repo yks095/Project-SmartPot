@@ -1,11 +1,13 @@
 <?php
   $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
-  $query = "SELECT manual FROM smartpot where potName = 'test' ";
+
+  $potCode = $_POST["id"];
+  $query = "SELECT manual FROM smartpot where potCode = '$potCode' ";
   $result = mysqli_query($con, $query);
   $row = mysqli_fetch_array($result);
 
   if($row[0] == '1'){
-    $query = "SELECT pumptime FROM smartpot where potName = 'test' ";
+    $query = "SELECT pumptime FROM smartpot where potCode = '$potCode' ";
     $result2 = mysqli_query($con, $query);
   }
 
