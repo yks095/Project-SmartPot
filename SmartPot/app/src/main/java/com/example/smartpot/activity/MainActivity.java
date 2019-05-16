@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -31,11 +32,40 @@ public class MainActivity extends AppCompatActivity {
     private FlowerRegisterActivity flowerRegisterActivity = new FlowerRegisterActivity();
     private String potCode = flowerRegisterActivity.getPotSerial();
 
+    public void btn_logout(View view)   {
+        new AlertDialog.Builder(this)
+                .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        MainActivity.this.startActivity(logoutIntent);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println(potCode);
+
+        final ImageButton logoutButton = (ImageButton) findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_logout(v);
+            }
+        });
+
         Button autoButton = (Button) findViewById(R.id.autoButton);
         autoButton.setOnClickListener(new View.OnClickListener(){
             @Override
