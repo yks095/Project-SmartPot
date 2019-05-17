@@ -50,7 +50,6 @@ public class ClimateFragment extends Fragment {
     }
 
     TextView[] weather_tv = new TextView[4];
-    DictionaryFragment dictionaryFragment;
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Override

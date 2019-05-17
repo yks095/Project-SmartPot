@@ -8,15 +8,168 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="40dp">
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
         <TextView
-            android:layout_margin="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="꽃 사전"
-            android:textSize="50dp"/>
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:text="content"
+            android:textSize="25dp" />
 
+        <TextView
+            android:id="@+id/content1"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="일.시"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@color/colorGray"
+                android:gravity="center"
+                android:text="content"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/content2"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="일.시"
+                android:textSize="25dp" />
+
+        </LinearLayout><LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:text="content"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/content3"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="일.시"
+            android:textSize="25dp" />
+
+    </LinearLayout><LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:text="content"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="일.시"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal">-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:background="@color/colorGray"-->
+                <!--android:gravity="center"-->
+                <!--android:text="현재일기"-->
+                <!--android:textSize="25dp" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/weather_tv_now"-->
+                <!--android:layout_width="250dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="현재일기"-->
+                <!--android:textSize="25dp" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal">-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:background="@color/colorGray"-->
+                <!--android:gravity="center"-->
+                <!--android:text="현재 기온"-->
+                <!--android:textSize="25dp" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/weather_tv_temp"-->
+                <!--android:layout_width="250dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="현재기온"-->
+                <!--android:textSize="25dp" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal">-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="100dp"-->
+
+                <!--android:layout_height="30dp"-->
+                <!--android:background="@color/colorGray"-->
+                <!--android:gravity="center"-->
+                <!--android:text="습도"-->
+                <!--android:textSize="25dp" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/weather_tv_mois"-->
+                <!--android:layout_width="250dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="습도"-->
+                <!--android:textSize="25dp" />-->
+
+        <!--</LinearLayout>-->
 
     </LinearLayout>
 
