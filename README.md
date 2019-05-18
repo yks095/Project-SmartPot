@@ -64,3 +64,14 @@
       - `error`에는 `PHP Notice:  Undefined index:`라고 찍힘
       - `PHP Notice:  Undefined index:`는 php에서 초기화되지 않은 변수를 사용하여 생긴 에러라고 search됨, 하지만 php에는 그런 변수가 없었음
       - 해결 : `connect` 후 `POST`방식으로 `php`에 값을 전달한 후, 1초 동안 `delay`를 주었더니 해결됨
+
+#### 2019-05-18
+  - 아두이노
+    - [온도센서](https://jinkyu.tistory.com/103), [물 수위 센서](https://wiki.dfrobot.com/Non-contact_Liquid_Level_Switch_SKU_FIT0212) 설계
+    - 4채널 릴레이를 하나의 화분에서 사용하기로 결정
+    - 두 개의 보드가 동시에 센서를 업데이트 하는 것 확인
+    - console창에 phpoc request가 뜨며 connect되지 않는 에러 발생
+      - phpoc 라이브러리를 열어봤지만 이해가 되지않음
+      - 같이 사용한 swRTC 라이브러리도 열어봤지만 역시 이해가 되지않음
+      - 메모리 부족으로 안정성에 문제가 생길 수 있다는 메시지 발견
+      - 해결 : 메모리를 잡아먹던 불필요한 라이브러리와 전역변수 제거
