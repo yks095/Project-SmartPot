@@ -11,9 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
+
         <activity android:name=".activity.UpdatePasswordActivity"></activity>
         <activity android:name=".activity.UpdateMemberActivity" />
-        <activity android:name=".SubLayout" />
         <activity android:name=".activity.FlowerRegisterActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity">

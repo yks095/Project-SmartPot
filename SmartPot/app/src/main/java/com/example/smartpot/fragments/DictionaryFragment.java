@@ -2,13 +2,23 @@ package com.example.smartpot.fragments;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.smartpot.R;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.util.Dictionary;
 
 public class DictionaryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -40,15 +50,12 @@ public class DictionaryFragment extends Fragment {
         }
     }
 
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dictionary, container, false);
+        View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
+
+        return view;
     }
 
     public void onButtonPressed(Uri uri) {
@@ -67,4 +74,5 @@ public class DictionaryFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
