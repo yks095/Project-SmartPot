@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -27,22 +28,24 @@ public class MainActivity extends AppCompatActivity {
 
     DictionaryFragment dictionaryFragment;
     private String auto;
-    private AlertDialog dialog;
-    private RegisterActivity registerActivity = new RegisterActivity();
-    private String potCode = registerActivity.getPotSerial();
+    private String manual;
+    private FlowerRegisterActivity flowerRegisterActivity = new FlowerRegisterActivity();
+    private String potCode = flowerRegisterActivity.getPotSerial();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println(potCode);
 
         Button autoButton = (Button) findViewById(R.id.autoButton);
         autoButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 auto = "1";
+                manual = "0";
                 System.out.println("자동수급 : 1");
-
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                WaterRequest waterRequest = new WaterRequest(auto, potCode, responseListener);
+                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                 queue.add(waterRequest);
 
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 auto = "0";
+                manual = "1";
                 System.out.println("수동수급 : 0");
 
 
@@ -130,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                WaterRequest waterRequest = new WaterRequest(auto, potCode, responseListener);
+                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                 queue.add(waterRequest);
 

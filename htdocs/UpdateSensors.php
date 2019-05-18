@@ -1,5 +1,6 @@
 <?php
-  $db = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+  $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+
   mysqli_set_charset($db, "utf8");
   if (mysqli_connect_errno()){
     echo "ERROR: 데이타베이스에 연결할 수 없습니다.";

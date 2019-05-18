@@ -1,6 +1,6 @@
 <?php
-
   $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+
 
   $userID = $_POST["userID"];
   $userPassword = $_POST["userPassword"];

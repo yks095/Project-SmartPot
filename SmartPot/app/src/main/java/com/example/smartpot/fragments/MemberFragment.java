@@ -1,18 +1,22 @@
 package com.example.smartpot.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.smartpot.R;
 import com.example.smartpot.activity.LoginActivity;
+import com.example.smartpot.activity.MainActivity;
 import com.example.smartpot.activity.UpdateMemberActivity;
 import com.example.smartpot.activity.UpdatePasswordActivity;
 
@@ -62,6 +66,25 @@ public class MemberFragment extends Fragment {
     phpdo task;
     phpdo2 task2;
 
+    public void btn_logout(View view)   {
+        new AlertDialog.Builder(getContext())
+                .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(getContext(), LoginActivity.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        MemberFragment.this.startActivity(logoutIntent);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +94,13 @@ public class MemberFragment extends Fragment {
         final Button updateMemberButton = (Button) view.findViewById(R.id.updateMemberButton);
         final Button updatePasswordButton = (Button) view.findViewById(R.id.updatePasswordButton);
         final TextView nowUserID = (TextView) view.findViewById(R.id.nowUserID);
-
+        final Button logoutButton = (Button) view.findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_logout(v);
+            }
+        });
 
         nowUserID.setText(loginActivity.getId());
         String userID = loginActivity.getId();
