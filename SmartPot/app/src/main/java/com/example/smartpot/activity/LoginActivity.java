@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
             try{
                 String userID = arg[0];
 
-                String link = "http://117.16.94.138/PotRow.php?userID="+userID;
+                String link = "http://222.97.212.74/PotRow.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

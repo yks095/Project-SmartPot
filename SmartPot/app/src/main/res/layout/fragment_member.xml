@@ -112,6 +112,8 @@
                 />
 
 
+
+
             <Button
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -123,19 +125,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:id="@+id/updatePasswordButton"
-                />
-
-            <Button
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:text="로그아웃"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:id="@+id/logoutButton"
                 />
 
         </LinearLayout>

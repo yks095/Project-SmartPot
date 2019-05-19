@@ -53,10 +53,13 @@
       - `potCode`가 등록되지 않은 회원일 시 화분 등록 화면으로 이동
     - 화분 등록
       - 화분 등록시 `startday` 가 현재 날짜로 DB에 저장
-
-#### 2019-05-18
-  - 수동수급 버튼 클릭시 `Alert` 내부에 `Spinner` 생성
-  - `Spinner의` 값을 `ms` 단위로 바꾸어 DB에 저장
-  - Push Alarm 기능 구현
-  - PHP 주기적 통신 구현
-  - `lowTemp`, `highTemp`를 `tempSensor`와 비교하여 알림창 띄울 예정
+    - FlowerDictionary
+        - DB Table dictionary 구축
+          - `name` varchar(50) null check
+          - `image` varchar(200) null check
+          - `content` varchar(500) null check
+    - `Python` 코드를 이용한 네이버 식물 도감 크롤링
+      - import requests
+      - import bs4
+      - import pymysql
+    - 약 800여 개의 식물 사전 구현
