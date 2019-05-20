@@ -53,13 +53,36 @@
       - `potCode`가 등록되지 않은 회원일 시 화분 등록 화면으로 이동
     - 화분 등록
       - 화분 등록시 `startday` 가 현재 날짜로 DB에 저장
+
+  - 아두이노
+    - 안드로이드의 `php`파일과의 구분을 위해 `htdocs`의 `GetManual.php`, `GetPumptimeValue.php`, `GetStatus.php`, `SetIdCheck.php`, `SetManual.php`, `UpdateSensors.php`를 arduino폴더 안으로 이동
+
+    - `android`에서 `potCode`에 대한 검증을 하기 때문에, `idCheck`애트리뷰트는 필요 없다고 생각하여, 애트리뷰트 제거
+
+    - `arduino`에서 php로 값을 전달할 때, 값이 전달되지 않는 `issue`발생
+      - `서버 log`의 `access`에는 `200`이 찍힘
+      - `error`에는 `PHP Notice:  Undefined index:`라고 찍힘
+      - `PHP Notice:  Undefined index:`는 php에서 초기화되지 않은 변수를 사용하여 생긴 에러라고 search됨, 하지만 php에는 그런 변수가 없었음
+      - 해결 : `connect` 후 `POST`방식으로 `php`에 값을 전달한 후, 1초 동안 `delay`를 주었더니 해결됨
+
+#### 2019-05-18
+  - 안드로이드
     - FlowerDictionary
-        - DB Table dictionary 구축
-          - `name` varchar(50) null check
-          - `image` varchar(200) null check
-          - `content` varchar(500) null check
-    - `Python` 코드를 이용한 네이버 식물 도감 크롤링
-      - import requests
-      - import bs4
-      - import pymysql
+    - DB Table dictionary 구축
+    - name varchar(50) null check
+    - image varchar(200) null check
+    - content varchar(500) null check
+  - Python 코드를 이용한 네이버 식물 도감 크롤링
+    - import requests
+    - import bs4
+    - import pymysql
     - 약 800여 개의 식물 사전 구현
+  - 아두이노
+    - [온도센서](https://jinkyu.tistory.com/103), [물 수위 센서](https://wiki.dfrobot.com/Non-contact_Liquid_Level_Switch_SKU_FIT0212) 설계
+    - 4채널 릴레이를 하나의 화분에서 사용하기로 결정
+    - 두 개의 보드가 동시에 센서를 업데이트 하는 것 확인
+    - console창에 phpoc request가 뜨며 connect되지 않는 에러 발생
+      - phpoc 라이브러리를 열어봤지만 이해가 되지않음
+      - 같이 사용한 swRTC 라이브러리도 열어봤지만 역시 이해가 되지않음
+      - 메모리 부족으로 안정성에 문제가 생길 수 있다는 메시지 발견
+      - 해결 : 메모리를 잡아먹던 불필요한 라이브러리와 전역변수 제거
