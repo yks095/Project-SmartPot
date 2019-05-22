@@ -1,18 +1,22 @@
 package com.example.smartpot.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.smartpot.R;
 import com.example.smartpot.activity.LoginActivity;
+import com.example.smartpot.activity.MainActivity;
 import com.example.smartpot.activity.UpdateMemberActivity;
 import com.example.smartpot.activity.UpdatePasswordActivity;
 
@@ -54,6 +58,8 @@ public class MemberFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     private LoginActivity loginActivity = new LoginActivity();
@@ -82,6 +88,16 @@ public class MemberFragment extends Fragment {
         task.execute(userID);
         task2.execute(userID);
 
+        final Button logoutButton = (Button) view.findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_logout(v);
+            }
+        });
+
+
+
         updateMemberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +118,27 @@ public class MemberFragment extends Fragment {
         return view;
     }
 
+    public void btn_logout(View view)   {
+        new AlertDialog.Builder(getContext())
+                .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(getContext(), LoginActivity.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        getContext().startActivity(logoutIntent);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
+    }
+
+
     private static String email="";
     private static String potName="";
 
@@ -116,7 +153,7 @@ public class MemberFragment extends Fragment {
             try{
                 String userID = arg[0];
 
-                String link = "http://117.16.94.138/UserInfo.php?userID="+userID;
+                String link = "http://117.16.94.138/android/UserInfo.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -158,7 +195,7 @@ public class MemberFragment extends Fragment {
             try{
                 String userID = arg[0];
 
-                String link = "http://117.16.94.138/UserPot.php?userID="+userID;
+                String link = "http://117.16.94.138/android/UserPot.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

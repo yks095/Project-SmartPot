@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PumpTimeRequest extends StringRequest {
 
-    final static private String URL = "http://117.16.94.138/PumpTimeUpdate.php";
+    final static private String URL = "http://117.16.94.138/android/PumpTimeUpdate.php";
     private Map<String, String> parameters;
 
     public PumpTimeRequest(String potCode, String manualPumpTime){

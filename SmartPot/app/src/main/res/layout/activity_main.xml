@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:id="@+id/content_main">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -17,36 +18,26 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/addButton"
-                android:layout_width="72dp"
-                android:layout_height="77dp"
-                android:background="@android:color/transparent"
-                android:padding="0dp"
-                android:src="@drawable/ic_add_circle_outline_black_24dp" />
-
-            <ImageButton
-                android:id="@+id/logoutButton"
-                android:layout_width="72dp"
-                android:layout_height="77dp"
-                android:layout_gravity="right"
-                android:background="@android:color/transparent"
-                android:padding="0dp"
-                android:src="@drawable/ic_clear_black_24dp" />
-
             <Button
                 android:id="@+id/autoButton"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="100dp"
                 android:layout_gravity="center"
-                android:text="자동 수급" />
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:text="자동 수급"
+                android:background="@color/colorWhite"/>
 
             <Button
                 android:id="@+id/manualButton"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="70dp"
                 android:layout_gravity="center"
-                android:text="수동 수급" />
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:text="수동 수급"
+                android:background="@color/colorWhite"/>
 
         </LinearLayout>
 
@@ -65,31 +56,22 @@
             android:layout_marginRight="8dp"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/homeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:text="HOME"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_marginTop="8dp"
 
-            <Button
+                android:src="@drawable/home" />
+
+            <ImageButton
                 android:id="@+id/climateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:text="날씨"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:src="@drawable/weather" />
 
             <Button
                 android:id="@+id/dicButton"

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PotCodeRequest extends StringRequest {
 
-    final static private String URL = "http://117.16.94.138/PotCodeValidate.php";
+    final static private String URL = "http://117.16.94.138/android/PotCodeValidate.php";
     private Map<String, String> parameters;
 
     public PotCodeRequest(String potCode, Response.Listener<String> listener){

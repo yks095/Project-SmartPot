@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class PasswordRequest extends StringRequest {
 
-    final static private String URL = "http://117.16.94.138/UpdatePassword.php";
+    final static private String URL = "http://117.16.94.138/android/UpdatePassword.php";
     private Map<String, String> parameters;
 
     public PasswordRequest(String userID, String userPassword, Response.Listener<String> listener){

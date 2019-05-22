@@ -81,7 +81,7 @@ public class ClimateFragment extends Fragment {
             try{
                 String idx = arg[0];
 
-                String link = "http://117.16.94.138/FlowerTemp.php?userID="+idx;
+                String link = "http://117.16.94.138/android/FlowerTemp.php?userID="+idx;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -124,7 +124,7 @@ public class ClimateFragment extends Fragment {
             try{
                 String idx = arg[0];
 
-                String link = "http://117.16.94.138/PotTemp.php?userID="+idx;
+                String link = "http://117.16.94.138/android/PotTemp.php?userID="+idx;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -165,31 +165,31 @@ public class ClimateFragment extends Fragment {
         task = new phpdo();
         task.execute(userID);
 
-        TimerTask adTask = new TimerTask() {
-            @Override
-            public void run() {
-                task2 = new phpdo2();
-                task2.execute(userID);
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(adTask, 0, 10000);
-        TimerTask adTask2 = new TimerTask() {
-            @Override
-            public void run() {
-                counter++;
-                if (counter >= 2) {
-                    if (Integer.valueOf(tempSensor) >= Integer.valueOf(highTemp)) {
-                        System.out.println("크다아아아아아아ㅏ아아아아ㅏ아앙아");
-                    }
-                    else if (Integer.valueOf(tempSensor) <= Integer.valueOf(lowTemp)) {
-                        System.out.println("작드아아아ㅏ아아아");
-                    }
-                }
-            }
-        };
-        Timer timer2 = new Timer();
-        timer2.schedule(adTask2, 0, 10000);
+//        TimerTask adTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                task2 = new phpdo2();
+//                task2.execute(userID);
+//            }
+//        };
+//        Timer timer = new Timer();
+//        timer.schedule(adTask, 0, 10000);
+//        TimerTask adTask2 = new TimerTask() {
+//            @Override
+//            public void run() {
+//                counter++;
+//                if (counter >= 2) {
+//                    if (Integer.parseInt(tempSensor) >= Integer.parseInt(highTemp)) {
+//                        System.out.println("크다아아아아아아ㅏ아아아아ㅏ아앙아");
+//                    }
+//                    else if (Integer.parseInt(tempSensor) <= Integer.parseInt(lowTemp)) {
+//                        System.out.println("작드아아아ㅏ아아아");
+//                    }
+//                }
+//            }
+//        };
+//        Timer timer2 = new Timer();
+//        timer2.schedule(adTask2, 0, 10000);
 
         weather_tv[0] = (TextView) view.findViewById(R.id.weather_tv_time);
         weather_tv[1] = (TextView) view.findViewById(R.id.weather_tv_now);

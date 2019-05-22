@@ -24,9 +24,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="회원 정보"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="30dp"
                 android:textStyle="bold"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 />
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginTop="50dp"
             >
 
             <LinearLayout
@@ -55,12 +57,13 @@
                     android:text="아이디"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:textColor="#ffffff"
-                    android:textColorHint="#ffffff"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
                     android:drawableStart="@drawable/ic_person_black_24dp"
                     android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:fontFamily="@font/bmhannaair_ttf"
+
                     android:layout_marginRight="10dp"
-                    android:background="@color/colorPrimary"
                     />
 
             </LinearLayout>
@@ -73,12 +76,12 @@
                 android:textSize="20dp"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffffff"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:drawableStart="@drawable/ic_mail_outline_black_24dp"
                 android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
                 />
 
             <TextView
@@ -89,12 +92,12 @@
                 android:textSize="20dp"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffffff"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:drawableStart="@drawable/ic_mail_outline_black_24dp"
                 android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
                 />
 
 
@@ -103,12 +106,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:textColor="#000000"
                 android:text="회원정보 수정"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:id="@+id/updateMemberButton"
+                android:background="@color/colorWhite"
                 />
 
 
@@ -119,12 +123,27 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:textColor="#000000"
                 android:text="비밀번호 변경"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:id="@+id/updatePasswordButton"
+                android:background="@color/colorWhite"
+                />
+
+            <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="로그아웃"
+                android:layout_marginTop="100dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:id="@+id/logoutButton"
+                android:background="#ED5315"
                 />
 
         </LinearLayout>

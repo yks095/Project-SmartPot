@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/colorWhite">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorWhite"
             android:orientation="vertical">
 
             <TextView
@@ -25,7 +26,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="회원 정보 수정"
-                android:textColor="#ffffff"
+                android:fontFamily="@font/bmhannaair_ttf"
+
+                android:textColor="#000000"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -34,6 +37,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
             android:orientation="vertical">
 
             <EditText
@@ -42,13 +46,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
                 android:drawableStart="@drawable/ic_mail_outline_black_24dp"
                 android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
                 android:hint="이메일"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:padding="10dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffffff" />
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
 
             <EditText
                 android:id="@+id/hintPotName"
@@ -56,13 +60,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
                 android:drawableStart="@drawable/ic_mail_outline_black_24dp"
                 android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
                 android:hint="화분명"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:padding="10dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffffff" />
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
 
             <Button
                 android:id="@+id/updateMemberButton2"
@@ -70,11 +74,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/edge"
                 android:text="수정하기"
-                android:textColor="#ffffff"
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:textColor="#15AFED"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
 

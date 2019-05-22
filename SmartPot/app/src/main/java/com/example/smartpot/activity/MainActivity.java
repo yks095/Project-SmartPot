@@ -1,5 +1,6 @@
 package com.example.smartpot.activity;
 
+import android.app.ActivityOptions;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -15,6 +16,7 @@ import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
@@ -53,25 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private int ms;
     private int result;
 
-    public void btn_logout(View view)   {
-        new AlertDialog.Builder(this)
-                .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
-                .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
-                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        MainActivity.this.startActivity(logoutIntent);
-                    }
-                })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                })
-                .show();
-    }
 
     public void notice(View view)   {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
@@ -110,13 +94,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.out.println(potCode);
 
-        final ImageButton logoutButton = (ImageButton) findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn_logout(v);
-            }
-        });
+
 
         Button autoButton = (Button) findViewById(R.id.autoButton);
         autoButton.setOnClickListener(new View.OnClickListener(){
@@ -249,22 +227,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addIntent = new Intent(MainActivity.this, FlowerRegisterActivity.class);
-                MainActivity.this.startActivity(addIntent);
-
-            }
-        });
 
         dictionaryFragment = new DictionaryFragment();
-        final Button climateButton = (Button) findViewById(R.id.climateButton);
+        final ImageButton climateButton = (ImageButton) findViewById(R.id.climateButton);
         final Button memberButton = (Button) findViewById(R.id.memberButton);
         final Button dicButton = (Button) findViewById(R.id.dicButton);
         final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
-        final Button homeButton = (Button) findViewById(R.id.homeButton);
+        final ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
 
 
         climateButton.setOnClickListener(new View.OnClickListener() {
@@ -276,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 dicButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
                 fragmentTransaction.replace(R.id.fragment, new ClimateFragment());
                 fragmentTransaction.commit();
             }
@@ -290,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
                 dicButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
                 fragmentTransaction.replace(R.id.fragment, new MemberFragment());
                 fragmentTransaction.commit();
             }
@@ -304,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
                 dicButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
                 fragmentTransaction.replace(R.id.fragment, new DictionaryFragment());
                 fragmentTransaction.commit();
             }
@@ -314,7 +286,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mainIntent = new Intent(MainActivity.this, MainActivity.class);
                 MainActivity.this.startActivity(mainIntent);
+                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_right);
+                finish();
             }
         });
+
     }
+
+
 }
