@@ -81,7 +81,7 @@ public class ClimateFragment extends Fragment {
             try{
                 String idx = arg[0];
 
-                String link = "http://117.16.94.138/android/FlowerTemp.php?userID="+idx;
+                String link = "http://pdh6547.iptime.org/android/FlowerTemp.php?userID="+idx;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

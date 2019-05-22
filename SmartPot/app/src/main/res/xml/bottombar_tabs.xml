@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <tabs>
+        <tab
+            id ="@+id/tab_manage"
+            icon = "@drawable/ic_local_florist_black_24dp"
+            title= "manage" />
+        <tab
+            id ="@+id/tab_weather"
+            icon = "@drawable/ic_cloud_black_24dp"
+            title= "weather" />
+        <tab
+            id ="@+id/tab_dictionary"
+            icon = "@drawable/ic_book_black_24dp"
+            title= "dictionary" />
+        <tab
+            id ="@+id/tab_member"
+            icon = "@drawable/ic_person_black_24dp"
+            title= "member" />
+    </tabs>
+
+</PreferenceScreen>

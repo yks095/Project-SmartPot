@@ -1,110 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity"
-    android:id="@+id/content_main">
+    >
 
     <FrameLayout
+        android:id="@+id/contentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomBar" />
 
-        <LinearLayout
-            android:id="@+id/mainLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+    <com.roughike.bottombar.BottomBar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/bottomBar"
+        android:layout_alignParentBottom="true"
+        app:bb_tabXmlResource="@xml/bottombar_tabs"
+        />
 
-            <Button
-                android:id="@+id/autoButton"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="100dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/bmhannaair_ttf"
-                android:text="자동 수급"
-                android:background="@color/colorWhite"/>
-
-            <Button
-                android:id="@+id/manualButton"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="70dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/bmhannaair_ttf"
-                android:text="수동 수급"
-                android:background="@color/colorWhite"/>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="8dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/homeButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="8dp"
-
-                android:src="@drawable/home" />
-
-            <ImageButton
-                android:id="@+id/climateButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:src="@drawable/weather" />
-
-            <Button
-                android:id="@+id/dicButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:text="사전"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/memberButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:text="회원정보"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-
-    </FrameLayout>
-
-
-
-</LinearLayout>
+</RelativeLayout>
