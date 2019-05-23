@@ -1,5 +1,5 @@
 <?php
-  $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+  $con = mysqli_connect("localhost", "root", "smartpot", "arduino","3307");
 
   if (mysqli_connect_errno())   {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -10,17 +10,14 @@
   $row2 = mysqli_fetch_array($result2);
 
   $result = mysqli_query($con, "SELECT lowTemp, highTemp FROM FLOWER WHERE idx = '$row2[0]' ");
-  $row = mysqli_fetch_array($result);
 
-  $data = $row[0];
-  $data2 = $row[1];
+  $response = array();
 
-  // $value = array($data, $data2);
+  while ($row = mysqli_fetch_array($result)) {
+    array_push($response, array("lowTemp"=>$row[0], "highTemp"=>$row[1]));
+  }
+  echo json_encode(array("response"=>$response), JSON_UNESCAPED_UNICODE);
 
-  // echo $value;
-
-  echo $data;
-  echo $data2;
   mysqli_close($con);
 
 ?>

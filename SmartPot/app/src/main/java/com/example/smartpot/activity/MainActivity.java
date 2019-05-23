@@ -39,12 +39,16 @@ public class MainActivity extends FragmentActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                 if (tabId == R.id.tab_manage) {
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
                     transaction.replace(R.id.contentContainer, manageFragment).commit();
                 } else if (tabId == R.id.tab_dictionary) {
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
                     transaction.replace(R.id.contentContainer, dictionaryFragment).commit();
                 } else if (tabId == R.id.tab_weather) {
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
                     transaction.replace(R.id.contentContainer, climateFragment).commit();
                 } else if (tabId == R.id.tab_member) {
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
                     transaction.replace(R.id.contentContainer, memberFragment).commit();
                 }
             }
@@ -55,7 +59,6 @@ public class MainActivity extends FragmentActivity {
     public void initFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.contentContainer, manageFragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 

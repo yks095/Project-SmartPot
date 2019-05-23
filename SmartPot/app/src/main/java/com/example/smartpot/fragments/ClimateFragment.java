@@ -1,9 +1,19 @@
 package com.example.smartpot.fragments;
 
+import android.app.Notification;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,11 +23,14 @@ import android.widget.TextView;
 
 import com.example.smartpot.R;
 import com.example.smartpot.activity.LoginActivity;
+import com.example.smartpot.activity.MainActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -70,6 +83,38 @@ public class ClimateFragment extends Fragment {
     private String highTemp;
     private String lowTemp;
 
+    public void hide()  {
+        NotificationManagerCompat.from(getContext()).cancel(0);
+    }
+
+    public void notice (View view) {
+        String channelId = "channel";
+        String channelName = "Channel Name";
+
+        NotificationManager notifiManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(channelId, channelName, importance);
+            notifiManager.createNotificationChannel(mChannel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), channelId);
+        Intent notificationIntent = new Intent(getContext(), MainActivity.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        int requestID = (int) System.currentTimeMillis();
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(),requestID,notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentTitle("경고!!!").
+                setContentText("식물 주위의 온도가 너무 높습니다. 자리를 옮겨주세요.").
+                setDefaults(Notification.DEFAULT_ALL).
+                setAutoCancel(true).
+                setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)).
+                setSmallIcon(R.drawable.smartpot).
+                setContentIntent(pendingIntent);
+        notifiManager.notify(0, builder.build());
+    }
+
     private class phpdo extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
@@ -81,7 +126,7 @@ public class ClimateFragment extends Fragment {
             try{
                 String idx = arg[0];
 
-                String link = "http://pdh6547.iptime.org/android/FlowerTemp.php?userID="+idx;
+                String link = "http://117.16.94.138/android/FlowerTemp.php?userID="+idx;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -107,8 +152,22 @@ public class ClimateFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
 
-            lowTemp = result.substring(0, 2);
-            highTemp = result.substring(2, 4);
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray jsonArray = jsonObject.getJSONArray("response");
+                int count = 0;
+                while (count < jsonArray.length()) {
+                    JSONObject object = jsonArray.getJSONObject(count);
+                    lowTemp = object.getString("lowTemp");
+                    highTemp = object.getString("highTemp");
+                    System.out.println(lowTemp);
+                    System.out.println(highTemp);
+                    break;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
     }
@@ -160,7 +219,7 @@ public class ClimateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_climate, container, false);
+        final View view = inflater.inflate(R.layout.fragment_climate, container, false);
         final String userID = loginActivity.getId().toString();
         task = new phpdo();
         task.execute(userID);
@@ -179,10 +238,11 @@ public class ClimateFragment extends Fragment {
 //            public void run() {
 //                counter++;
 //                if (counter >= 2) {
-//                    if (Integer.parseInt(tempSensor) >= Integer.parseInt(highTemp)) {
+//                    if (Integer.valueOf(tempSensor) >= Integer.valueOf(highTemp)) {
+//                        notice(view);
 //                        System.out.println("크다아아아아아아ㅏ아아아아ㅏ아앙아");
 //                    }
-//                    else if (Integer.parseInt(tempSensor) <= Integer.parseInt(lowTemp)) {
+//                    else if (Integer.valueOf(tempSensor) <= Integer.valueOf(lowTemp)) {
 //                        System.out.println("작드아아아ㅏ아아아");
 //                    }
 //                }
