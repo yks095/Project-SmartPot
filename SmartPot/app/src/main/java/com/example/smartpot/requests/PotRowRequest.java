@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class PotRowRequest extends StringRequest {
 
-    final static private String URL = "http://117.16.94.138/android/PotRow.php";
+    final static private String URL = "http://222.97.212.74/android/PotRow.php";
     private Map<String, String> parameters;
 
     public PotRowRequest(String userID, String potCode, Response.Listener<String> listener){

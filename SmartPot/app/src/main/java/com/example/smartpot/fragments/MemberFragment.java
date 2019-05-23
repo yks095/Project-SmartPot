@@ -153,7 +153,7 @@ public class MemberFragment extends Fragment {
             try{
                 String userID = arg[0];
 
-                String link = "http://117.16.94.138/android/UserInfo.php?userID="+userID;
+                String link = "http://222.97.212.74/android/UserInfo.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -195,7 +195,7 @@ public class MemberFragment extends Fragment {
             try{
                 String userID = arg[0];
 
-                String link = "http://117.16.94.138/android/UserPot.php?userID="+userID;
+                String link = "http://222.97.212.74/android/UserPot.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

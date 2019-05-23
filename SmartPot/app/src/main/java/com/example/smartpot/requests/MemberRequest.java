@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class MemberRequest extends StringRequest {
 
-    final static private String URL = "http://117.16.94.138/android/UpdateMember.php";
+    final static private String URL = "http://222.97.212.74/android/UpdateMember.php";
     private Map<String, String> parameters;
 
     public MemberRequest(String userID, String userEmail, String potName, Response.Listener<String> listener){
