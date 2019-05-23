@@ -2,6 +2,7 @@ package com.example.smartpot.fragments;
 
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -11,16 +12,29 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
 import com.example.smartpot.activity.FlowerRegisterActivity;
+import com.example.smartpot.activity.LoginActivity;
+import com.example.smartpot.enums.ServerURL;
 import com.example.smartpot.requests.PumpTimeRequest;
 import com.example.smartpot.requests.WaterRequest;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URL;
 
 
 public class ManageFragment extends Fragment {
@@ -65,7 +79,13 @@ public class ManageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_manage, container, false);
+        final String userID = loginActivity.getId().toString();
         Button autoButton = (Button) view.findViewById(R.id.autoButton);
+        nowPotTemp= (TextView) view.findViewById(R.id.nowPotTemp);
+        nowPotWater = (TextView) view.findViewById(R.id.nowPotWater);
+        task = new phpdo();
+        task.execute(userID);
+
         autoButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -189,6 +209,71 @@ public class ManageFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private String waterSensor;
+    private String tempSensor;
+    TextView nowPotTemp;
+    TextView nowPotWater;
+    private LoginActivity loginActivity = new LoginActivity();
+    phpdo task;
+
+    private class phpdo extends AsyncTask<String, Void, String> {
+
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... arg) {
+            try{
+                String idx = arg[0];
+
+                String link = ServerURL.URL.getUrl() + "/PotInfo.php?userID="+idx;
+                URL url = new URL(link);
+                HttpClient client = new DefaultHttpClient();
+                HttpGet request = new HttpGet();
+                request.setURI(new URI(link));
+                HttpResponse response = client.execute(request);
+                BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+                StringBuffer sb = new StringBuffer("");
+                String line = "";
+
+                while((line = in.readLine()) != null) {
+                    sb.append(line);
+                    break;
+                }
+
+                in.close();
+                return sb.toString();
+            } catch (Exception e) {
+                return new String("Exception" + e.getMessage());
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray jsonArray = jsonObject.getJSONArray("response");
+                int count = 0;
+                while (count < jsonArray.length()) {
+                    JSONObject object = jsonArray.getJSONObject(count);
+                    waterSensor = object.getString("sensor");
+                    tempSensor = object.getString("tempSensor");
+                    System.out.println(tempSensor);
+                    System.out.println(waterSensor);
+                    break;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            nowPotTemp.setText(tempSensor);
+            nowPotWater.setText(waterSensor);
+        }
     }
 
     public void onButtonPressed(Uri uri) {

@@ -204,7 +204,6 @@ public class LoginActivity extends AppCompatActivity {
             try{
                 String userID = arg[0];
                 String link = ServerURL.URL.getUrl() + "/PotRow.php?userID="+userID;
-                System.out.println("여기다 여기" + link);
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -224,7 +223,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 String s = sb.toString();
                 rowNum = Integer.valueOf(s);
-                System.out.println("rownum22 = " + rowNum);
 
                 return sb.toString();
             } catch (Exception e) {
@@ -235,7 +233,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             rowNum = Integer.valueOf(result);
-            System.out.println("rownum = " + rowNum);
         }
 
     }

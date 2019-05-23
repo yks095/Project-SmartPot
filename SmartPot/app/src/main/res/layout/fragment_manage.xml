@@ -5,35 +5,83 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activity.MainActivity">
-
     <LinearLayout
-        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/autoButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="70dp"
-            android:background="@color/colorWhite"
-            android:fontFamily="@font/bmhannaair_ttf"
-            android:text="자동 수급" />
+        <LinearLayout
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/manualButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:background="@color/colorWhite"
-            android:fontFamily="@font/bmhannaair_ttf"
-            android:text="수동 수급" />
+            <TextView
+                android:id="@+id/nowPotTemp"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="온도"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:drawableStart="@drawable/ic_wb_sunny_black_24dp"
+                android:drawableLeft="@drawable/ic_wb_sunny_black_24dp"
+                android:fontFamily="@font/bmhannaair_ttf"
 
+                android:layout_marginRight="10dp"
+                />
+            <TextView
+                android:id="@+id/nowPotWater"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="습도"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:drawableStart="@drawable/ic_opacity_black_24dp"
+                android:drawableLeft="@drawable/ic_opacity_black_24dp"
+                android:fontFamily="@font/bmhannaair_ttf"
+
+                android:layout_marginRight="10dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/mainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <Button
+                android:id="@+id/autoButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="100dp"
+                android:background="@color/colorWhite"
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:text="자동 수급" />
+
+            <Button
+                android:id="@+id/manualButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:background="@color/colorWhite"
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:text="수동 수급" />
+
+        </LinearLayout>
     </LinearLayout>
+
 </FrameLayout>
