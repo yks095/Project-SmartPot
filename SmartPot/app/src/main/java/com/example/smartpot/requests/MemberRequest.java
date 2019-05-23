@@ -3,13 +3,14 @@ package com.example.smartpot.requests;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.smartpot.enums.ServerURL;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MemberRequest extends StringRequest {
 
-    final static private String URL = "http://222.97.212.74/android/UpdateMember.php";
+    final static private String URL = ServerURL.URL.getUrl() + "/UpdateMember.php";
     private Map<String, String> parameters;
 
     public MemberRequest(String userID, String userEmail, String potName, Response.Listener<String> listener){

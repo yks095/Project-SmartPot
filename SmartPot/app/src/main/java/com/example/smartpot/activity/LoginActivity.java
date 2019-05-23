@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
+import com.example.smartpot.enums.ServerURL;
 import com.example.smartpot.requests.LoginRequest;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -202,8 +203,8 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... arg) {
             try{
                 String userID = arg[0];
-
-                String link = "http://222.97.212.74/android/PotRow.php?userID="+userID;
+                String link = ServerURL.URL.getUrl() + "/PotRow.php?userID="+userID;
+                System.out.println("여기다 여기" + link);
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

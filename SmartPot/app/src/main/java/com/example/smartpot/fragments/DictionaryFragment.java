@@ -16,6 +16,7 @@ import com.example.smartpot.Dictionary;
 import com.example.smartpot.DictionaryAdapter;
 import com.example.smartpot.R;
 import com.example.smartpot.SearchAdapter;
+import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -156,7 +157,7 @@ public class DictionaryFragment extends Fragment {
         @Override
         protected String doInBackground(String... arg) {
             try{
-                String link = "http://222.97.212.74/android/GetFlower.php";
+                String link = ServerURL.URL.getUrl() + "/GetFlower.php";
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

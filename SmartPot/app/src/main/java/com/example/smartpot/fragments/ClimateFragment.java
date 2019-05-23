@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.example.smartpot.R;
 import com.example.smartpot.activity.LoginActivity;
 import com.example.smartpot.activity.MainActivity;
+import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -126,7 +127,7 @@ public class ClimateFragment extends Fragment {
             try{
                 String idx = arg[0];
 
-                String link = "http://222.97.212.74/android/FlowerTemp.php?userID="+idx;
+                String link = ServerURL.URL.getUrl() + "/FlowerTemp.php?userID="+idx;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -183,7 +184,7 @@ public class ClimateFragment extends Fragment {
             try{
                 String idx = arg[0];
 
-                String link = "http://222.97.212.74/android/PotTemp.php?userID="+idx;
+                String link = ServerURL.URL.getUrl() + "/PotTemp.php?userID="+idx;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

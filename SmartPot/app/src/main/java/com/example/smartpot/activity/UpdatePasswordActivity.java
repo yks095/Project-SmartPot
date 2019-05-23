@@ -13,6 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
+import com.example.smartpot.enums.ServerURL;
 import com.example.smartpot.requests.MemberRequest;
 import com.example.smartpot.requests.PasswordRequest;
 
@@ -50,7 +51,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             try{
                 String userID = arg[0];
 
-                String link = "http://222.97.212.74/android/PasswordInfo.php?userID="+userID;
+                String link = ServerURL.URL.getUrl() + "/PasswordInfo.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

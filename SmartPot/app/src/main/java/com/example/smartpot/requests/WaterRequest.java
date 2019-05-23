@@ -4,13 +4,14 @@ import android.content.res.Resources;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.smartpot.enums.ServerURL;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class WaterRequest extends StringRequest {
 
-    final static private String URL = "http://222.97.212.74/android/WaterRequest.php";
+    final static private String URL = ServerURL.URL.getUrl() + "/WaterRequest.php";
     private Map<String, String> parameters;
 
     public WaterRequest(String auto, String manual, String potCode, Response.Listener<String> listener)   {

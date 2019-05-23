@@ -19,6 +19,7 @@ import com.example.smartpot.activity.LoginActivity;
 import com.example.smartpot.activity.MainActivity;
 import com.example.smartpot.activity.UpdateMemberActivity;
 import com.example.smartpot.activity.UpdatePasswordActivity;
+import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -153,7 +154,7 @@ public class MemberFragment extends Fragment {
             try{
                 String userID = arg[0];
 
-                String link = "http://222.97.212.74/android/UserInfo.php?userID="+userID;
+                String link = ServerURL.URL.getUrl() + "/UserInfo.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -195,7 +196,7 @@ public class MemberFragment extends Fragment {
             try{
                 String userID = arg[0];
 
-                String link = "http://222.97.212.74/android/UserPot.php?userID="+userID;
+                String link = ServerURL.URL.getUrl() + "/UserPot.php?userID="+userID;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
