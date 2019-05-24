@@ -1,14 +1,15 @@
 <?php
-$con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+ $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
   $auto = $_POST["auto"];
+  $manual = $_POST["manual"];
   $potCode = $_POST["potCode"];
-
+  $userID = $_POST["userID"];
 
   if (mysqli_connect_errno())   {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
 
-  mysqli_query($con,"UPDATE SMARTPOT SET auto='$auto' WHERE potCode='$potCode' ");
+  mysqli_query($con,"UPDATE SMARTPOT SET auto='$auto', manual = '$manual' WHERE userID='$userID' ");
 
    // mysqli_stmt_bind_param($statment, "s", $potname);
      // mysqli_stmt_execute($statment);

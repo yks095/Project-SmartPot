@@ -12,10 +12,11 @@ public class PumpTimeRequest extends StringRequest {
     final static private String URL = ServerURL.URL.getUrl() + "/PumpTimeUpdate.php";
     private Map<String, String> parameters;
 
-    public PumpTimeRequest(String potCode, String manualPumpTime){
+    public PumpTimeRequest(String potCode, String userID, String manualPumpTime){
         super(Request.Method.POST, URL, null, null);
         parameters = new HashMap<>();
         parameters.put("potCode", potCode);
+        parameters.put("userID", userID);
         parameters.put("manualPumpTime", manualPumpTime);
 
     }

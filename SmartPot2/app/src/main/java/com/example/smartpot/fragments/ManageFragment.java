@@ -40,11 +40,21 @@ import java.net.URL;
 public class ManageFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private final static int MS = 1000; // DB에 ms단위로 저장하기위해
 
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private String auto;
+    private String manual;
+    private FlowerRegisterActivity flowerRegisterActivity = new FlowerRegisterActivity();
+    private String potCode = flowerRegisterActivity.getPotSerial();
+    private int s;
+    private int result;
+    private LoginActivity loginActivity = new LoginActivity();
+    private String userID = loginActivity.getId();
 
     public ManageFragment() {
     }
@@ -67,19 +77,11 @@ public class ManageFragment extends Fragment {
         }
     }
 
-    private String auto;
-    private String manual;
-    private FlowerRegisterActivity flowerRegisterActivity = new FlowerRegisterActivity();
-    private String potCode = flowerRegisterActivity.getPotSerial();
-    private int s;
-    private int ms;
-    private int result;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_manage, container, false);
-        final String userID = loginActivity.getId().toString();
         Button autoButton = (Button) view.findViewById(R.id.autoButton);
         nowPotTemp= (TextView) view.findViewById(R.id.nowPotTemp);
         nowPotWater = (TextView) view.findViewById(R.id.nowPotWater);
@@ -129,7 +131,7 @@ public class ManageFragment extends Fragment {
                     }
                 };
 
-                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, responseListener);
+                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, userID, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(getContext());
                 queue.add(waterRequest);
 
@@ -172,12 +174,11 @@ public class ManageFragment extends Fragment {
 
                                                 s = Integer.valueOf(numSpinner.getSelectedItem().toString());
                                                 System.out.println("텍스트 값 : " + s);
-                                                ms = 1000;
-                                                result = s * ms;
+                                                result = s * MS;
                                                 System.out.println("공급 시간 = " + result + "밀리세컨드");
                                                 String manualPumpTime = String.valueOf(result);
-
-                                                PumpTimeRequest pumpTimeRequest = new PumpTimeRequest(potCode, manualPumpTime);
+                                                System.out.println("userid : " + userID);
+                                                PumpTimeRequest pumpTimeRequest = new PumpTimeRequest(potCode, userID, manualPumpTime);
                                                 RequestQueue queue = Volley.newRequestQueue(getContext());
                                                 queue.add(pumpTimeRequest);
 
@@ -201,7 +202,7 @@ public class ManageFragment extends Fragment {
                         }
                     }
                 };
-                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, responseListener);
+                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, userID,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(getContext());
                 queue.add(waterRequest);
 
@@ -215,7 +216,7 @@ public class ManageFragment extends Fragment {
     private String tempSensor;
     TextView nowPotTemp;
     TextView nowPotWater;
-    private LoginActivity loginActivity = new LoginActivity();
+
     phpdo task;
 
     private class phpdo extends AsyncTask<String, Void, String> {

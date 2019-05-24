@@ -10,7 +10,7 @@ urls = []
 def insertflower(name, img, content):
     # MySQL Connection 연결
    conn = pymysql.connect(host='localhost', user='root', password='smartpot',
-                          db='arduino', charset='utf8')
+                          db='arduino', charset='utf8', port=3307)
 
    # Connection 으로부터 Cursor 생성
    curs = conn.cursor()

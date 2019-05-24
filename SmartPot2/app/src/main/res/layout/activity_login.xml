@@ -73,8 +73,15 @@
                 android:drawableStart="@drawable/ic_lock_black_24dp"
                 android:drawableLeft="@drawable/ic_lock_black_24dp"
                 android:layout_marginTop="10dp"
-
                 />
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:layout_marginLeft="60dp"
+                android:text="로그인 정보 기억하기"
+                android:id="@+id/checkBox" />
 
             <Button
                 android:layout_width="280dp"

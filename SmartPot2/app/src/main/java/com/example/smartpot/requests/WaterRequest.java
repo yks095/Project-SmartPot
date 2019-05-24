@@ -14,13 +14,16 @@ public class WaterRequest extends StringRequest {
     final static private String URL = ServerURL.URL.getUrl() + "/WaterRequest.php";
     private Map<String, String> parameters;
 
-    public WaterRequest(String auto, String manual, String potCode, Response.Listener<String> listener)   {
+    public WaterRequest(String auto, String manual, String potCode, String userID, Response.Listener<String> listener)   {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
         parameters.put("auto", auto);
         parameters.put("manual", manual);
         parameters.put("potCode", potCode);
+        parameters.put("userID", userID);
     }
+
+
 
     @Override
     public Map<String, String> getParams()  {
