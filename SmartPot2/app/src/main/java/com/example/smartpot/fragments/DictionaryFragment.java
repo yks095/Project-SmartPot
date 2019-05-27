@@ -15,7 +15,6 @@ import android.widget.ListView;
 import com.example.smartpot.Dictionary;
 import com.example.smartpot.DictionaryAdapter;
 import com.example.smartpot.R;
-import com.example.smartpot.SearchAdapter;
 import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
@@ -63,97 +62,63 @@ public class DictionaryFragment extends Fragment {
     }
 
     phpdo task;
+
     private ListView dicList;
     private DictionaryAdapter dictionaryAdapter;
     private List<Dictionary> dictionaries;
-
-    private List<String> searches;
-    private ListView searchList;
+    private List<Dictionary> searchDictionaries;
     private EditText searchText;
-    private SearchAdapter searchAdapter;
-    private ArrayList<String> arrayList;
-
+    static String searchName;
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
 
+        task = new phpdo();
+        task.execute();
+
         dicList = (ListView) view.findViewById(R.id.dicList);
+        searchText = (EditText) view.findViewById(R.id.searchText);
+
         dictionaries = new ArrayList<Dictionary>();
         dictionaryAdapter = new DictionaryAdapter(getContext(), dictionaries);
         dicList.setAdapter(dictionaryAdapter);
 
-
-
-        task = new phpdo();
-        task.execute();
-        System.out.println("실행!!");
-
-        searchText = (EditText) view.findViewById(R.id.searchText);
-        searchList = (ListView) view.findViewById(R.id.searchList);
-
-        searches = new ArrayList<String>();
-        System.out.println("여기");
-        settingList();
-        System.out.println("여기2");
-
-        arrayList = new ArrayList<String >();
-        arrayList.addAll(searches);
-
-        searchAdapter = new SearchAdapter(getContext(), searches);
-
-        searchList.setAdapter(searchAdapter);
-
+        dicList.setTextFilterEnabled(true);
         searchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchName = searchText.getText().toString();
+                searchDictionaries = new ArrayList<Dictionary>();
+
+                for(Dictionary dic : dictionaries)  {
+                    if(dic.getName().contains(searchName))
+                        searchDictionaries.add(dic);
+                }
+                dictionaryAdapter = new DictionaryAdapter(getContext(), searchDictionaries);
+                dicList.setAdapter(dictionaryAdapter);
+
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                String text = searchText.getText().toString();
-                search(text);
+
+                if(searchText.getText().length() == 0)
+                    dicList.clearTextFilter();
+
             }
         });
-
         return view;
-    }
-
-    private void settingList() {
-
-        for(int i = 0; i < dictionaries.size(); i++)    {
-            System.out.println("ddddddddddddddddddddddd");
-            System.out.println("꽃 이름 : " + dictionaries.get(i).getName());
-            searches.add(dictionaries.get(i).getName());
-            System.out.println("꽃 이름 : " + dictionaries.get(i).getName());
-        }
-
-    }
-
-
-    private void search(String charText) {
-        searches.clear();
-        if(charText.length() == 0)  {
-            searches.addAll(arrayList);
-        }
-        else    {
-            for(int i = 0; i < arrayList.size(); i++)   {
-                if(arrayList.get(i).toLowerCase().contains(charText))   {
-                    searches.add(arrayList.get(i));
-                }
-            }
-        }
-        searchAdapter.notifyDataSetChanged();
     }
 
     private class phpdo extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-
         }
-
         @Override
         protected String doInBackground(String... arg) {
             try{
@@ -164,14 +129,11 @@ public class DictionaryFragment extends Fragment {
                 request.setURI(new URI(link));
                 HttpResponse response = client.execute(request);
 
-                System.out.println("사전 첫번째 입성");
                 StringBuffer sb = new StringBuffer("");
                 String line = "";
                 BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-                System.out.println("while문 직전");
 
                 while((line = in.readLine()) != null) {
-                    System.out.println("while문 입성");
                     sb.append(line);
                     break;
                 }
@@ -198,6 +160,7 @@ public class DictionaryFragment extends Fragment {
                     content = object.getString("content");
                     Dictionary dictionary = new Dictionary(name, image, content);
                     dictionaries.add(dictionary);
+
                     dictionaryAdapter.notifyDataSetChanged();
                     count++;
                 }

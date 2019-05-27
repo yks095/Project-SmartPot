@@ -41,10 +41,10 @@ public class DictionaryAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+
+
         View view = convertView;
         final ViewHolder holder;
-
-
 
         if(view == null)    {
             view = View.inflate(context, R.layout.dictionary, null);
@@ -80,6 +80,9 @@ public class DictionaryAdapter extends BaseAdapter {
 
         return view;
     }
+
+
+
 
     static class ViewHolder {
         TextView name;

@@ -20,18 +20,18 @@
             android:name="com.google.android.actions"
             android:resource="@xml/bottombar_tabs" />
 
-        <activity android:name=".activity.UpdatePasswordActivity" />
-        <activity android:name=".activity.UpdateMemberActivity" />
-        <activity android:name=".activity.FlowerRegisterActivity" />
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activities.UpdatePasswordActivity" />
+        <activity android:name=".activities.UpdateMemberActivity" />
+        <activity android:name=".activities.FlowerRegisterActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RegisterActivity">
+        <activity android:name=".activities.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

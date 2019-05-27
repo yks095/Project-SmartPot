@@ -15,15 +15,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.smartpot.R;
-import com.example.smartpot.activity.LoginActivity;
-import com.example.smartpot.activity.MainActivity;
+import com.example.smartpot.activities.LoginActivity;
+import com.example.smartpot.activities.MainActivity;
 import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
@@ -42,8 +41,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ClimateFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";

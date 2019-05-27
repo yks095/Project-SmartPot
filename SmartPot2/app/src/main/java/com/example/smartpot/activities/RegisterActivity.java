@@ -1,4 +1,4 @@
-package com.example.smartpot.activity;
+package com.example.smartpot.activities;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +13,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
-import com.example.smartpot.requests.PotCodeRequest;
-import com.example.smartpot.requests.PotRequest;
 import com.example.smartpot.requests.RegisterRequest;
 import com.example.smartpot.requests.ValidateRequest;
 

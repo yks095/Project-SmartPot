@@ -1,4 +1,4 @@
-package com.example.smartpot.activity;
+package com.example.smartpot.activities;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
