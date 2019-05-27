@@ -83,6 +83,8 @@ public class ManageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_manage, container, false);
         Button autoButton = (Button) view.findViewById(R.id.autoButton);
+        potName = (TextView) view.findViewById(R.id.potName);
+        nowCds = (TextView) view.findViewById(R.id.nowCds);
         nowPotTemp= (TextView) view.findViewById(R.id.nowPotTemp);
         nowPotWater = (TextView) view.findViewById(R.id.nowPotWater);
         task = new phpdo();
@@ -211,9 +213,12 @@ public class ManageFragment extends Fragment {
 
         return view;
     }
-
+    private String name;
+    private String water;
     private String waterSensor;
     private String tempSensor;
+    TextView potName;
+    TextView nowCds;
     TextView nowPotTemp;
     TextView nowPotWater;
 
@@ -262,6 +267,8 @@ public class ManageFragment extends Fragment {
                 int count = 0;
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
+                    name = object.getString("potName");
+                    water = object.getString("cds_sensor");
                     waterSensor = object.getString("sensor");
                     tempSensor = object.getString("tempSensor");
                     System.out.println(tempSensor);
@@ -272,7 +279,22 @@ public class ManageFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            nowPotTemp.setText(tempSensor);
+            potName.setText(name);
+            if (water.equals("1")){
+                nowCds.setText("충분");
+                nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.full_water,0,0,0);
+            } else if (water.equals("0")){
+                nowCds.setText("부족");
+                nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.empty_water,0,0,0);
+            } if (Integer.parseInt(tempSensor) > 30) {
+                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hightemp,0,0,0);
+            } else if (15 <= Integer.parseInt(tempSensor) && Integer.parseInt(tempSensor)<= 30) {
+                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_halftemp,0,0,0);
+            } else if (15 > Integer.parseInt(tempSensor)) {
+                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowtemp,0,0,0);
+            }
+
+            nowPotTemp.setText(tempSensor+"℃");
             nowPotWater.setText(waterSensor);
         }
     }

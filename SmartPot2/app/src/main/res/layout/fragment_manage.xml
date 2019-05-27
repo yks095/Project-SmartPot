@@ -12,12 +12,55 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_marginTop="40dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:fontFamily="@font/bmhannaair_ttf"
+            android:text="화분 상태"/>
+
         <LinearLayout
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/potName"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="화분명"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:drawableStart="@drawable/ic_local_florist_black_24dp"
+                android:drawableLeft="@drawable/ic_local_florist_black_24dp"
+                android:fontFamily="@font/bmhannaair_ttf"
+
+                android:layout_marginRight="10dp"
+                />
+
+            <TextView
+                android:id="@+id/nowCds"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="수위"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:drawableStart="@drawable/full_water"
+                android:drawableLeft="@drawable/full_water"
+                android:fontFamily="@font/bmhannaair_ttf"
+
+                android:layout_marginRight="10dp"
+                />
 
             <TextView
                 android:id="@+id/nowPotTemp"
@@ -29,8 +72,8 @@
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
-                android:drawableStart="@drawable/ic_wb_sunny_black_24dp"
-                android:drawableLeft="@drawable/ic_wb_sunny_black_24dp"
+                android:drawableStart="@drawable/ic_hightemp"
+                android:drawableLeft="@drawable/ic_hightemp"
                 android:fontFamily="@font/bmhannaair_ttf"
 
                 android:layout_marginRight="10dp"

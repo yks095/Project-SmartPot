@@ -65,15 +65,22 @@ public class DictionaryAdapter extends BaseAdapter {
         } else {
             Glide.with(holder.image).load(dictionaries.get(position).getImage()).apply(RequestOptions.circleCropTransform()).into(holder.image);
         }
+        final ImageView imageView = (ImageView)view.findViewById(R.id.imageView);
         holder.name.setText(dictionaries.get(position).getName());
         holder.content.setText(dictionaries.get(position).getContent());
         holder.hideLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.content.getVisibility() == View.GONE)
+                if (holder.content.getVisibility() == View.GONE) {
                     holder.content.setVisibility(View.VISIBLE);
-                else
+                    // content 클릭 시 화살표 이미지 변경
+                    imageView.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+                } else {
                     holder.content.setVisibility(View.GONE);
+                    // content 클릭 시 화살표 이미지 변경
+                    imageView.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+
+                }
             }
         });
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.smartpot.Dictionary;
@@ -79,7 +80,14 @@ public class DictionaryFragment extends Fragment {
 
         dicList = (ListView) view.findViewById(R.id.dicList);
         searchText = (EditText) view.findViewById(R.id.searchText);
-
+        ImageButton cancelButton = (ImageButton) view.findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchText.setText(null);
+                dicList.clearTextFilter();
+            }
+        });
         dictionaries = new ArrayList<Dictionary>();
         dictionaryAdapter = new DictionaryAdapter(getContext(), dictionaries);
         dicList.setAdapter(dictionaryAdapter);
@@ -90,6 +98,9 @@ public class DictionaryFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
+            /* searchText의 값이 변할 때 마다 searchDictionary를 변경 시켜 adapter에 적용
+               searchText의 문자가 포함된 식물을 searchDictionary에 add시킴
+            */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 searchName = searchText.getText().toString();

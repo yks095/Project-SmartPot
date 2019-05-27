@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="40dp"
             >
 
             <TextView
@@ -23,7 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="화분 등록"
-                android:textColor="#ffffff"
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:textColor="#000000"
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
@@ -36,23 +38,25 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:layout_gravity="center"
+
             >
 
             <EditText
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:hint="화분 코드"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffffff"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:id="@+id/potCodeText"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:drawableLeft="@drawable/ic_person_black_24dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorWhite"
                 />
 
             <Button
@@ -62,6 +66,7 @@
                 android:textStyle="bold"
                 android:background="@color/colorWarning"
                 android:text="체크"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_gravity="center"
                 android:id="@+id/potCodeButton"
                 android:textColor="#ffffff"
@@ -73,15 +78,16 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:hint="화분명"
+            android:fontFamily="@font/bmhannaair_ttf"
             android:layout_gravity="center"
             android:padding="10dp"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:id="@+id/potNameText"
             android:drawableStart="@drawable/ic_mail_outline_black_24dp"
             android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorWhite"
             />
 
         <LinearLayout
@@ -104,8 +110,9 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
+                android:background="#179F3A"
                 android:text="등록하기"
+                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:id="@+id/flowerRegisterButton"

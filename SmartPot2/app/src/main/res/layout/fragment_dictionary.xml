@@ -12,20 +12,38 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/searchText"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="검색어를 입력하세요"/>
+            android:layout_marginLeft="70dp"
+            android:orientation="horizontal">
 
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="261dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Search Flower"
+                android:fontFamily="@font/bmhannaair_ttf"
+                />
 
+            <ImageButton
+                android:id="@+id/cancelButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:src="@drawable/cancel"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
         <ListView
             android:id="@+id/dicList"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:divider="#ffffff"
-            android:dividerHeight="10dp">
+            android:dividerHeight="10dp"
+            android:background="@color/colorWhite">
         </ListView>
 
     </LinearLayout>
