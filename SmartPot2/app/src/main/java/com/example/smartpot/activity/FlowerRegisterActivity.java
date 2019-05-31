@@ -1,4 +1,4 @@
-package com.example.smartpot.activities;
+package com.example.smartpot.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;

@@ -11,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.smartpot.R;
-import com.example.smartpot.activities.LoginActivity;
-import com.example.smartpot.activities.UpdateMemberActivity;
-import com.example.smartpot.activities.UpdatePasswordActivity;
+import com.example.smartpot.activity.LoginActivity;
+import com.example.smartpot.activity.MainActivity;
+import com.example.smartpot.activity.UpdateMemberActivity;
+import com.example.smartpot.activity.UpdatePasswordActivity;
 import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
@@ -30,6 +32,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
+import java.util.Map;
 
 public class MemberFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";

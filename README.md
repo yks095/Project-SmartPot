@@ -94,3 +94,24 @@
     - 하단 바 생성
     - 로그인 정보 기억 생성
     - 약간의 UI개선(font적용, 이미지 적용)
+
+#### 2019-05-31
+  - 안드로이드
+    - 전체적인 `UI`수정
+    - `climateFragment`
+      - 1시간 후 기온, 습도 크롤링
+    - `dictionaryFragment`
+      - 뷰 수정
+      - 검색 시 해당 `listView`출력
+    - `manageFragment`
+      - 수위센서 값 받아옴
+      - 수위센서, 온도 센서 값에 따라 이미지 변경
+
+    - `Default Activity Not Found Error`
+      - 해결 방법
+        - `File` > `Sync Project With Gradle Files`
+        - `File` > `Invalidate Caches/Restart`
+        - `layout`경로 확인할 것
+
+
+      - 해결하는데 7시간 걸림

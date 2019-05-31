@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.RegisterActivity">
+    tools:context="com.example.smartpot.activity.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,8 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/colorWhite"
-            android:layout_marginTop="40dp"
-
             >
 
             <TextView
@@ -28,7 +26,6 @@
                 android:text="회원가입"
                 android:textColor="#000000"
                 android:textSize="30dp"
-                android:fontFamily="@font/bmhannaair_ttf"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -40,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="40dp"
             >
 
             <LinearLayout
@@ -55,7 +51,6 @@
                     android:layout_width="190dp"
                     android:layout_height="wrap_content"
                     android:hint="아이디"
-                    android:fontFamily="@font/bmhannaair_ttf"
                     android:layout_gravity="center"
                     android:padding="10dp"
                     android:textColor="#000000"
@@ -74,7 +69,6 @@
                     android:textStyle="bold"
                     android:background="@color/colorWarning"
                     android:text="중복 체크"
-                    android:fontFamily="@font/bmhannaair_ttf"
                     android:layout_gravity="center"
                     android:id="@+id/validateButton"
                     android:textColor="#ffffff"
@@ -88,7 +82,6 @@
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:hint="비밀번호"
-                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:textColor="#000000"
@@ -104,7 +97,6 @@
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:hint="이메일"
-                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:textColor="#000000"
@@ -129,7 +121,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="여성"
-                    android:fontFamily="@font/bmhannaair_ttf"
                     android:id="@+id/genderWoman"
                     android:layout_weight="1"
                     android:checked="true"
@@ -139,7 +130,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="남성"
-                    android:fontFamily="@font/bmhannaair_ttf"
                     android:id="@+id/genderMan"
                     android:layout_weight="1"
                     />
@@ -151,10 +141,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="#179F3A"
+                android:textColor="#000000"
+                android:background="@color/colorWhite"
                 android:text="가입하기"
-                android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:id="@+id/registerButton"

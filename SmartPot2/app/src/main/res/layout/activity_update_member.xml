@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UpdateMemberActivity">
+    tools:context=".activity.UpdateMemberActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,8 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_mail_outline_black_24dp"
-                android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                android:drawableStart="@drawable/ic_local_florist_black_24dp"
+                android:drawableLeft="@drawable/ic_local_florist_black_24dp"
                 android:hint="화분명"
                 android:fontFamily="@font/bmhannaair_ttf"
                 android:padding="10dp"

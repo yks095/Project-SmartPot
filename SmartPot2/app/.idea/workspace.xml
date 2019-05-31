@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="579fc32f-9ce1-4e0d-811b-429aee0fb0b9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/DictionaryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartpot/DictionaryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/activities/FlowerRegisterActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/activities/LoginActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/activities/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/activities/RegisterActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/activities/UpdateMemberActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/activities/UpdatePasswordActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/enums/ServerURL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartpot/enums/ServerURL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/ClimateFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/ClimateFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/DictionaryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/DictionaryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/ManageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/ManageFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/MemberFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartpot/fragments/MemberFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/border.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/cancel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/empty_water.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/full_water.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/half_water.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/ic_halftemp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/ic_hightemp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/ic_keyboard_arrow_down_black_24dp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/ic_keyboard_arrow_up_black_24dp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/ic_lowtemp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_flower_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_flower_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_update_member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_update_member.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_update_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_update_password.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/dictionary.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/dictionary.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_dictionary.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_dictionary.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_manage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_manage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_member.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/color.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/color.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1272" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Project-SmartPot-e4fbb0ec7044176aa3dec4f6799de06c15842d55/SmartPot2" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="579fc32f-9ce1-4e0d-811b-429aee0fb0b9" name="Default Changelist" comment="" />
+      <created>1559204807734</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559204807734</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1272" y="-8" width="1296" height="1000" extended-state="6" />
+    <layout>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32928804" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Resources Explorer" order="7" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Logcat" order="1" />
+      <window_info anchor="bottom" id="TODO" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="5" visible="true" weight="0.3290993" />
+      <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+    </layout>
+  </component>
+</project>

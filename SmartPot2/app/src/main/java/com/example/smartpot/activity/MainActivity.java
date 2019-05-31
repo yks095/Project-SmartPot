@@ -1,10 +1,9 @@
-package com.example.smartpot.activities;
+package com.example.smartpot.activity;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.Toast;
 
 import com.example.smartpot.fragments.ManageFragment;
 import com.example.smartpot.R;
@@ -55,13 +54,6 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
-    }
-
-    // 뒤로가기 버튼 클릭시 이벤트 구현
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this, "뒤로가기 버튼을 누르셨습니다!", Toast.LENGTH_SHORT).show();
-        super.onBackPressed();
     }
 
     public void initFragment() {

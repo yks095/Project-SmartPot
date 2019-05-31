@@ -94,8 +94,8 @@
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
-                android:drawableStart="@drawable/ic_mail_outline_black_24dp"
-                android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                android:drawableStart="@drawable/ic_local_florist_black_24dp"
+                android:drawableLeft="@drawable/ic_local_florist_black_24dp"
                 android:fontFamily="@font/bmhannaair_ttf"
                 android:layout_marginTop="10dp"
                 />

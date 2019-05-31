@@ -1,4 +1,4 @@
-package com.example.smartpot.activities;
+package com.example.smartpot.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
 import com.example.smartpot.enums.ServerURL;
+import com.example.smartpot.requests.MemberRequest;
 import com.example.smartpot.requests.PasswordRequest;
 
 import org.apache.http.HttpResponse;

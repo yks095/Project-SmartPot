@@ -1,4 +1,4 @@
-package com.example.smartpot.activities;
+package com.example.smartpot.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,14 +6,19 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
 import com.example.smartpot.enums.ServerURL;
@@ -76,19 +81,8 @@ public class LoginActivity extends AppCompatActivity {
         //로그인 정보 유지 check한 후 로그인 성공 시 다음 로그인부터 실행
         if (saveLoginData) {
             idText.setText(id2);
-            System.out.println("id는?????????????????" + idText.getText().toString());
             passwordText.setText(pwd);
             checkBox.setChecked(saveLoginData);
-            task = new PhpDo();
-            task.execute(id2);
-            if(rowNum == 0)  {
-                Intent intent = new Intent(LoginActivity.this, FlowerRegisterActivity.class);
-                LoginActivity.this.startActivity(intent);
-            }
-            else {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                LoginActivity.this.startActivity(intent);
-            }
         }
 
         registerButton.setOnClickListener(new View.OnClickListener(){
@@ -181,11 +175,10 @@ public class LoginActivity extends AppCompatActivity {
         pwd = appData.getString("PWD", "");
     }
 
-
-
     public void initializeControls(){
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton)findViewById(R.id.faceBookButton);
+
     }
 
     private void loginWithFB(){

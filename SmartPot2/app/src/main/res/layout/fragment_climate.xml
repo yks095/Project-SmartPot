@@ -2,64 +2,105 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.ClimateFragment">
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="40dp">
+            android:paddingTop="40dp"
+            android:id="@+id/back"
+            android:background="@color/colorWhite"
+            >
+
+            <TextView
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="부산광역시"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:fontFamily="@font/bmhannaair_ttf"
+                android:drawableStart="@drawable/ic_location_on_black_24dp"
+                android:drawableLeft="@drawable/ic_location_on_black_24dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="50dp"
+                android:textSize="25dp"
+
+                />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:background="@color/colorGray"
-                    android:gravity="center"
-                    android:text="일.시"
-                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/weather_tv_time"
-                    android:layout_width="250dp"
+                    android:layout_width="400dp"
                     android:layout_height="30dp"
                     android:gravity="center"
-                    android:text="일.시"
-                    android:textSize="25dp" />
+                    android:fontFamily="@font/bmhannaair_ttf" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:layout_marginTop="30dp">
 
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:background="@color/colorGray"
-                    android:gravity="center"
-                    android:text="현재일기"
-                    android:textSize="25dp" />
+                <ImageView
+                    android:id="@+id/cast"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
 
                 <TextView
                     android:id="@+id/weather_tv_now"
-                    android:layout_width="250dp"
-                    android:layout_height="30dp"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
-                    android:text="현재일기"
-                    android:textSize="25dp" />
+                    android:fontFamily="@font/bmhannaair_ttf"
+                    android:textSize="25dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="50dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:background="@color/colorWhite"
+                    android:gravity="center"
+                    android:text="현재 기온"
+                    android:fontFamily="@font/bmhannaair_ttf"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@color/colorWhite"
+                    android:gravity="center"
+                    android:text="현재 습도"
+                    android:fontFamily="@font/bmhannaair_ttf"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/humidity"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="20dp"/>
 
             </LinearLayout>
 
@@ -67,48 +108,94 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal">
-
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:background="@color/colorGray"
-                    android:gravity="center"
-                    android:text="현재 기온"
-                    android:textSize="25dp" />
+                >
 
                 <TextView
                     android:id="@+id/weather_tv_temp"
-                    android:layout_width="250dp"
+                    android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:gravity="center"
-                    android:text="현재기온"
-                    android:textSize="25dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
-
-
-                <TextView
-                    android:layout_width="100dp"
-
-                    android:layout_height="30dp"
-                    android:background="@color/colorGray"
-                    android:gravity="center"
-                    android:text="습도"
                     android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/weather_tv_mois"
-                    android:layout_width="250dp"
+                    android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:gravity="center"
-                    android:text="습도"
+                    android:textSize="25dp"
+                    android:layout_marginRight="30dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft = "40dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="@color/colorWhite"
+                    android:gravity="center"
+                    android:text="1시간 후 기온"
+                    android:fontFamily="@font/bmhannaair_ttf"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="@color/colorWhite"
+                    android:gravity="center"
+                    android:text="1시간 후 습도"
+                    android:layout_marginLeft = "25dp"
+                    android:fontFamily="@font/bmhannaair_ttf"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/humidity_1hr"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="20dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                >
+
+                <TextView
+                    android:id="@+id/weather_forecast_1hr_temp"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
                     android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/weather_forecast_1hr_mois"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textSize="25dp" />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/weather_forecast_2hr_temp"-->
+                    <!--android:layout_width="70dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="25dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/weather_forecast_2hr_mois"-->
+                    <!--android:layout_width="70dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="25dp" />-->
 
             </LinearLayout>
 

@@ -18,8 +18,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
-import com.example.smartpot.activities.FlowerRegisterActivity;
-import com.example.smartpot.activities.LoginActivity;
+import com.example.smartpot.activity.FlowerRegisterActivity;
+import com.example.smartpot.activity.LoginActivity;
 import com.example.smartpot.enums.ServerURL;
 import com.example.smartpot.requests.PumpTimeRequest;
 import com.example.smartpot.requests.WaterRequest;
@@ -85,12 +85,12 @@ public class ManageFragment extends Fragment {
         Button autoButton = (Button) view.findViewById(R.id.autoButton);
         potName = (TextView) view.findViewById(R.id.potName);
         nowCds = (TextView) view.findViewById(R.id.nowCds);
-        nowPotTemp= (TextView) view.findViewById(R.id.nowPotTemp);
+        nowPotTemp = (TextView) view.findViewById(R.id.nowPotTemp);
         nowPotWater = (TextView) view.findViewById(R.id.nowPotWater);
         task = new phpdo();
         task.execute(userID);
 
-        autoButton.setOnClickListener(new View.OnClickListener(){
+        autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                notice(view);
@@ -142,7 +142,7 @@ public class ManageFragment extends Fragment {
 
 
         Button manualButton = (Button) view.findViewById(R.id.manualButton);
-        manualButton.setOnClickListener(new View.OnClickListener(){
+        manualButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                hide();
@@ -204,7 +204,7 @@ public class ManageFragment extends Fragment {
                         }
                     }
                 };
-                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, userID,responseListener);
+                WaterRequest waterRequest = new WaterRequest(auto, manual, potCode, userID, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(getContext());
                 queue.add(waterRequest);
 
@@ -213,6 +213,7 @@ public class ManageFragment extends Fragment {
 
         return view;
     }
+
     private String name;
     private String water;
     private String waterSensor;
@@ -232,10 +233,10 @@ public class ManageFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... arg) {
-            try{
+            try {
                 String idx = arg[0];
 
-                String link = ServerURL.URL.getUrl() + "/PotInfo.php?userID="+idx;
+                String link = ServerURL.URL.getUrl() + "/PotInfo.php?userID=" + idx;
                 URL url = new URL(link);
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();
@@ -246,7 +247,7 @@ public class ManageFragment extends Fragment {
                 StringBuffer sb = new StringBuffer("");
                 String line = "";
 
-                while((line = in.readLine()) != null) {
+                while ((line = in.readLine()) != null) {
                     sb.append(line);
                     break;
                 }
@@ -280,22 +281,34 @@ public class ManageFragment extends Fragment {
                 e.printStackTrace();
             }
             potName.setText(name);
-            if (water.equals("1")){
+            if (water.equals("null")) {
+                nowCds.setText("없음");
+                nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.empty_water, 0, 0, 0);
+            } else if (water.equals("1")) {
                 nowCds.setText("충분");
-                nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.full_water,0,0,0);
-            } else if (water.equals("0")){
+                nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.full_water, 0, 0, 0);
+            } else if (water.equals("0")) {
                 nowCds.setText("부족");
-                nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.empty_water,0,0,0);
-            } if (Integer.parseInt(tempSensor) > 30) {
-                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hightemp,0,0,0);
-            } else if (15 <= Integer.parseInt(tempSensor) && Integer.parseInt(tempSensor)<= 30) {
-                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_halftemp,0,0,0);
-            } else if (15 > Integer.parseInt(tempSensor)) {
-                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowtemp,0,0,0);
+                nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.empty_water, 0, 0, 0);
             }
-
-            nowPotTemp.setText(tempSensor+"℃");
-            nowPotWater.setText(waterSensor);
+            if (tempSensor.equals("null")) {
+                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowtemp, 0, 0, 0);
+                nowPotTemp.setText("없음");
+            } else if (Integer.parseInt(tempSensor) > 30) {
+                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hightemp, 0, 0, 0);
+                nowPotTemp.setText(tempSensor + "℃");
+            } else if (15 <= Integer.parseInt(tempSensor) && Integer.parseInt(tempSensor) <= 30) {
+                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_halftemp, 0, 0, 0);
+                nowPotTemp.setText(tempSensor + "℃");
+            } else if (15 > Integer.parseInt(tempSensor)) {
+                nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowtemp, 0, 0, 0);
+                nowPotTemp.setText(tempSensor + "℃");
+            }
+            if (waterSensor.equals("null")) {
+                nowPotWater.setText("없음");
+            } else {
+                nowPotWater.setText(waterSensor);
+            }
         }
     }
 
