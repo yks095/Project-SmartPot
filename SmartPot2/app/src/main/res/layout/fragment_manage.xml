@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:textSize="40dp"
             android:fontFamily="@font/bmhannaair_ttf"
-            android:text="화분 상태"/>
+            android:text="화분 상태"
+            android:textColor="#000000"/>
 
         <LinearLayout
             android:layout_marginTop="50dp"
@@ -30,46 +31,60 @@
 
             <TextView
                 android:id="@+id/potName"
-                android:layout_width="280dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="50dp"
                 android:text="화분명"
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
-                android:drawableStart="@drawable/ic_local_florist_black_24dp"
-                android:drawableLeft="@drawable/ic_local_florist_black_24dp"
+                android:drawableStart="@drawable/ic_local_florist_black_24dp_2"
+                android:drawableLeft="@drawable/ic_local_florist_black_24dp_2"
                 android:fontFamily="@font/bmhannaair_ttf"
-
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="80dp"
                 />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/nowCds"
-                android:layout_width="280dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="30dp"
                 android:text="수위"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:drawableStart="@drawable/full_water"
                 android:drawableLeft="@drawable/full_water"
                 android:fontFamily="@font/bmhannaair_ttf"
 
-                android:layout_marginRight="10dp"
-                />
+                android:layout_marginRight="10dp"  />
 
             <TextView
                 android:id="@+id/nowPotTemp"
-                android:layout_width="280dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="30dp"
                 android:text="온도"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:drawableStart="@drawable/ic_hightemp"
@@ -80,12 +95,14 @@
                 />
             <TextView
                 android:id="@+id/nowPotWater"
-                android:layout_width="280dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="30dp"
                 android:text="습도"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:drawableStart="@drawable/ic_opacity_black_24dp"
@@ -98,10 +115,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/mainLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+
             >
 
             <Button
@@ -110,9 +128,12 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="100dp"
-                android:background="@color/colorWhite"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edge2"
                 android:fontFamily="@font/bmhannaair_ttf"
-                android:text="자동 수급" />
+                android:text="자동 수급"
+                android:textColor="#179F3A"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/manualButton"
@@ -120,9 +141,14 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:background="@color/colorWhite"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edge2"
                 android:fontFamily="@font/bmhannaair_ttf"
-                android:text="수동 수급" />
+                android:text="수동 수급"
+                android:textColor="#179F3A"
+                android:textStyle="bold"
+
+                />
 
         </LinearLayout>
     </LinearLayout>

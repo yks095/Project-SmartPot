@@ -52,6 +52,15 @@ public class DictionaryFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onResume() {
+        searchText.setText(null);
+        dictionaries = new ArrayList<Dictionary>();
+        dictionaryAdapter = new DictionaryAdapter(getContext(), dictionaries);
+        dicList.setAdapter(dictionaryAdapter);
+        dicList.clearTextFilter();
+        super.onResume();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,8 @@ public class DictionaryFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+
 
     phpdo task;
 
@@ -74,6 +85,8 @@ public class DictionaryFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
+
+        System.out.println("딕셔너리 프래그먼트 진입");
 
         task = new phpdo();
         task.execute();
