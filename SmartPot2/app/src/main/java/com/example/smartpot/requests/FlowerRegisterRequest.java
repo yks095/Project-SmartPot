@@ -18,9 +18,6 @@ public class FlowerRegisterRequest extends StringRequest {
 
         parameters.put("flower", flower);
         parameters.put("userID", userID);
-
-
-        System.out.println(parameters.toString());
     }
 
     @Override

@@ -1,12 +1,11 @@
 <?php
-$con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");  
+  $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
   $userID = $_POST["userID"];
 
   $statement = mysqli_prepare($con, "SELECT * FROM USER WHERE userID = ?");
   mysqli_stmt_bind_param($statement, "s", $userID);
   mysqli_execute($statement);
   mysqli_stmt_store_result($statement);
-  // mysqli_stmt_bind_result($statement, $userID);
 
   $response = array();
   $response["success"] = true;
@@ -17,4 +16,4 @@ $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
   }
 
   echo json_encode($response);
- ?>
+?>

@@ -77,7 +77,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             password = result;
-            System.out.println("현재 비번 : "+password);
         }
     }
 

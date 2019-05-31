@@ -75,8 +75,6 @@ public class DictionaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
 
-        System.out.println("딕셔너리 프래그먼트 진입");
-
         task = new phpdo();
         task.execute();
 

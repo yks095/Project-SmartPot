@@ -93,10 +93,8 @@ public class ManageFragment extends Fragment {
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                notice(view);
                 auto = "1";
                 manual = "0";
-                System.out.println("자동수급 : 1");
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -145,11 +143,8 @@ public class ManageFragment extends Fragment {
         manualButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                hide();
                 auto = "0";
                 manual = "1";
-                System.out.println("수동수급 : 0");
-
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -175,11 +170,8 @@ public class ManageFragment extends Fragment {
                                             public void onClick(DialogInterface dialog, int which) {
 
                                                 s = Integer.valueOf(numSpinner.getSelectedItem().toString());
-                                                System.out.println("텍스트 값 : " + s);
                                                 result = s * MS;
-                                                System.out.println("공급 시간 = " + result + "밀리세컨드");
                                                 String manualPumpTime = String.valueOf(result);
-                                                System.out.println("userid : " + userID);
                                                 PumpTimeRequest pumpTimeRequest = new PumpTimeRequest(potCode, userID, manualPumpTime);
                                                 RequestQueue queue = Volley.newRequestQueue(getContext());
                                                 queue.add(pumpTimeRequest);
@@ -272,8 +264,6 @@ public class ManageFragment extends Fragment {
                     water = object.getString("cds_sensor");
                     waterSensor = object.getString("sensor");
                     tempSensor = object.getString("tempSensor");
-                    System.out.println(tempSensor);
-                    System.out.println(waterSensor);
                     break;
                 }
 

@@ -19,7 +19,6 @@ public class PotRowRequest extends StringRequest {
         parameters = new HashMap<>();
         parameters.put("userID", userID);
         parameters.put("potCode", potCode);
-        System.out.println("parameters : " + parameters.toString());
 
     }
 

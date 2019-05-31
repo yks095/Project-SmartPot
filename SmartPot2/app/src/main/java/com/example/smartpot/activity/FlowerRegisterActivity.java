@@ -38,7 +38,6 @@ public class FlowerRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flower_register);
-        System.out.println(loginActivity.getId());
 
         final EditText potCodeText = (EditText) findViewById(R.id.potCodeText);
         final EditText potNameText = (EditText) findViewById(R.id.potNameText);
