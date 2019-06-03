@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.smartpot.enums.ServerURL;
 import com.example.smartpot.fragments.ManageFragment;
@@ -216,6 +219,47 @@ public class MainActivity extends FragmentActivity {
                 e.printStackTrace();
             }
 
+        }
+    }
+
+
+    // Back 버튼 2번 눌렀을 시 프로세스 종료
+    private long pressedTime = 0;
+    public interface OnBackPressedListener    {
+        public void onBack();
+    }
+    private OnBackPressedListener mBackListener;
+
+    public void setOnBackPressedListener(OnBackPressedListener listener)    {
+        mBackListener = listener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mBackListener != null)   {
+            mBackListener.onBack();
+            Log.e("!!!", "Listener is not null");
+        }
+        else    {
+            Log.e("!!!", "Listener is null");
+            if(pressedTime == 0) {
+                Snackbar.make(findViewById(R.id.main), "한 번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG).show();
+                pressedTime = System.currentTimeMillis();
+            }
+            else {
+                int seconds = (int)(System.currentTimeMillis() - pressedTime);
+
+                if(seconds > 3000)  {
+                    Snackbar.make(findViewById(R.id.main), "한 번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG).show();
+                    pressedTime = 0;
+                }
+                else {
+                    super.onBackPressed();
+                    Log.e("!!!", "onBackPressed : finished, killProcess");
+                    finish();
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                }
+            }
         }
     }
 }

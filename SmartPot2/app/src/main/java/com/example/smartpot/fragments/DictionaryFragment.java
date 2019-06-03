@@ -1,11 +1,13 @@
 package com.example.smartpot.fragments;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.ListView;
 import com.example.smartpot.Dictionary;
 import com.example.smartpot.DictionaryAdapter;
 import com.example.smartpot.R;
+import com.example.smartpot.activity.MainActivity;
 import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
@@ -32,7 +35,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DictionaryFragment extends Fragment {
+public class DictionaryFragment extends Fragment{
+//    ManageFragment manageFragment;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -85,6 +89,8 @@ public class DictionaryFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
+
+//        manageFragment = new ManageFragment();
 
         System.out.println("딕셔너리 프래그먼트 진입");
 

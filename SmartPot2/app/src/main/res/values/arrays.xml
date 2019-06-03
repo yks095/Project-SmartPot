@@ -21,15 +21,15 @@
     </string-array>
 
     <string-array name="second">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
+        <item>1sec</item>
+        <item>2sec</item>
+        <item>3sec</item>
+        <item>4sec</item>
+        <item>------------------------------5sec------------------------------</item>
+        <item>------------------------------6sec------------------------------</item>
+        <item>------------------------------7sec------------------------------</item>
+        <item>------------------------------8sec------------------------------</item>
+        <item>------------------------------9sec------------------------------</item>
     </string-array>
 
 </resources>

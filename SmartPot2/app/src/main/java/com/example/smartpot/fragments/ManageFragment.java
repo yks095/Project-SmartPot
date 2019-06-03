@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Layout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -159,8 +161,9 @@ public class ManageFragment extends Fragment {
 
                                 adapter = ArrayAdapter.createFromResource(getContext(), R.array.second, android.R.layout.simple_spinner_dropdown_item);
                                 numSpinner.setAdapter(adapter);
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setTitle("수동수급");
+                                builder.setTitle("수동수급 할 시간을 고르시오");
 
                                 builder.setView(numSpinner);
 
@@ -168,8 +171,12 @@ public class ManageFragment extends Fragment {
                                         new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-
-                                                s = Integer.valueOf(numSpinner.getSelectedItem().toString());
+                                                String sub = numSpinner.getSelectedItem().toString();
+                                                System.out.println("sub = " + sub);
+                                                String second = sub.substring(0,1);
+                                                System.out.println("second = " + second);
+                                                s = Integer.valueOf(second);
+                                                System.out.println("s = " + s);
                                                 result = s * MS;
                                                 String manualPumpTime = String.valueOf(result);
                                                 PumpTimeRequest pumpTimeRequest = new PumpTimeRequest(potCode, userID, manualPumpTime);
