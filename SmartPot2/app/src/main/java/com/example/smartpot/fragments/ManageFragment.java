@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Layout;
 import android.view.Gravity;
@@ -57,6 +58,7 @@ public class ManageFragment extends Fragment {
     private int result;
     private LoginActivity loginActivity = new LoginActivity();
     private String userID = loginActivity.getId();
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public ManageFragment() {
     }
@@ -89,6 +91,7 @@ public class ManageFragment extends Fragment {
         nowCds = (TextView) view.findViewById(R.id.nowCds);
         nowPotTemp = (TextView) view.findViewById(R.id.nowPotTemp);
         nowPotWater = (TextView) view.findViewById(R.id.nowPotWater);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.manage_refresh_layout);
         task = new phpdo();
         task.execute(userID);
 
@@ -207,6 +210,16 @@ public class ManageFragment extends Fragment {
                 RequestQueue queue = Volley.newRequestQueue(getContext());
                 queue.add(waterRequest);
 
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                task = new phpdo();
+                task.execute(userID);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
