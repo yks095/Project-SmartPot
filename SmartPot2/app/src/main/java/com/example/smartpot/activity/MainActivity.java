@@ -222,7 +222,6 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-
     // Back 버튼 2번 눌렀을 시 프로세스 종료
     private long pressedTime = 0;
     public interface OnBackPressedListener    {
@@ -256,8 +255,10 @@ public class MainActivity extends FragmentActivity {
                 else {
                     super.onBackPressed();
                     Log.e("!!!", "onBackPressed : finished, killProcess");
-                    finish();
-                    android.os.Process.killProcess(android.os.Process.myPid());
+                    //뒤로가기 두번 누르면 홈화면으로 감
+                    finishAffinity();
+                    System.runFinalization();
+                    System.exit(0);
                 }
             }
         }
