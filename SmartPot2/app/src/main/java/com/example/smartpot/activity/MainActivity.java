@@ -45,7 +45,9 @@ public class MainActivity extends FragmentActivity {
     private ClimateFragment climateFragment;
     private DictionaryFragment dictionaryFragment;
     private MemberFragment memberFragment;
+    boolean isReceived = false;
     int status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,21 +96,23 @@ public class MainActivity extends FragmentActivity {
         TimerTask getTemp2 = new TimerTask() {
             @Override
             public void run() {
-                if (tempSensor != null && !tempSensor.trim().equals("")) {
-                    if (Integer.valueOf(tempSensor) >= Integer.valueOf(highTemp)) {
-                        notice();
-                        status = 1;
-                    } else if (Integer.valueOf(tempSensor) <= Integer.valueOf(lowTemp)) {
-                        notice();
-                        status = 2;
+                if (isReceived) {
+                    if ("null".equals(tempSensor)) {
+                    } else {
+                        if (Integer.valueOf(tempSensor) >= Integer.valueOf(highTemp)) {
+                            notice();
+                            status = 1;
+                        } else if (Integer.valueOf(tempSensor) <= Integer.valueOf(lowTemp)) {
+                            notice();
+                            status = 2;
+                        }
                     }
+                    isReceived = false;
                 }
             }
         };
         Timer timer2 = new Timer();
         timer2.schedule(getTemp2, 0, 10000);
-
-
     }
 
     public void initFragment() {
@@ -141,7 +145,7 @@ public class MainActivity extends FragmentActivity {
         int requestID = (int) System.currentTimeMillis();
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, requestID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        if(status == 1){
+        if (status == 1) {
             builder.setContentTitle("경고!!!").
                     setContentText("식물의 온도가 너무 높습니다. 자리를 옮겨주세요.").
                     setDefaults(Notification.DEFAULT_ALL).
@@ -212,6 +216,8 @@ public class MainActivity extends FragmentActivity {
                     lowTemp = object.getString("lowTemp");
                     highTemp = object.getString("highTemp");
                     tempSensor = object.getString("tempSensor");
+                    System.out.println("tempSensor : " + tempSensor);
+                    isReceived = true;
                     break;
                 }
 
@@ -224,35 +230,34 @@ public class MainActivity extends FragmentActivity {
 
     // Back 버튼 2번 눌렀을 시 프로세스 종료
     private long pressedTime = 0;
-    public interface OnBackPressedListener    {
+
+    public interface OnBackPressedListener {
         public void onBack();
     }
+
     private OnBackPressedListener mBackListener;
 
-    public void setOnBackPressedListener(OnBackPressedListener listener)    {
+    public void setOnBackPressedListener(OnBackPressedListener listener) {
         mBackListener = listener;
     }
 
     @Override
     public void onBackPressed() {
-        if(mBackListener != null)   {
+        if (mBackListener != null) {
             mBackListener.onBack();
             Log.e("!!!", "Listener is not null");
-        }
-        else    {
+        } else {
             Log.e("!!!", "Listener is null");
-            if(pressedTime == 0) {
+            if (pressedTime == 0) {
                 Snackbar.make(findViewById(R.id.main), "한 번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG).show();
                 pressedTime = System.currentTimeMillis();
-            }
-            else {
-                int seconds = (int)(System.currentTimeMillis() - pressedTime);
+            } else {
+                int seconds = (int) (System.currentTimeMillis() - pressedTime);
 
-                if(seconds > 3000)  {
+                if (seconds > 3000) {
                     Snackbar.make(findViewById(R.id.main), "한 번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG).show();
                     pressedTime = 0;
-                }
-                else {
+                } else {
                     super.onBackPressed();
                     Log.e("!!!", "onBackPressed : finished, killProcess");
                     //뒤로가기 두번 누르면 홈화면으로 감
