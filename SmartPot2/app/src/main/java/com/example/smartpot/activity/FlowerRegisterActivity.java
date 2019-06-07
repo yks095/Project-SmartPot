@@ -86,7 +86,7 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
+                            if (success == true) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(FlowerRegisterActivity.this);
                                 dialog = builder.setMessage("사용할 수 있는 화분코드입니다.")
                                         .setPositiveButton("확인", null)
