@@ -53,10 +53,24 @@ public class ManageFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Dialog epicDialog;
-    ImageView hintImage;
-    TextView hintText;
+    //potname hint
+    Dialog epicDialog1;
+    ImageView hintImage1;
+    TextView hintText1;
+    Button hintNextButton1;
+    ImageView close1;
+    //sensor hint
+    Dialog epicDialog2;
+    ImageView hintImage2;
+    TextView hintText2;
+    Button hintNextButton2;
+    ImageView close2;
+    //button hint
+    Dialog epicDialog3;
+    ImageView hintImage3;
+    TextView hintText3;
     Button hintCloseButton;
+    ImageView close3;
 
     private OnFragmentInteractionListener mListener;
 
@@ -106,10 +120,23 @@ public class ManageFragment extends Fragment {
         task = new phpdo();
         task.execute(userID);
 
-        epicDialog = new Dialog(getContext());
-        hintText = (TextView)view.findViewById(R.id.hintText) ;
-        hintImage = (ImageView) view.findViewById(R.id.hintImage);
+        epicDialog1 = new Dialog(getContext());
+        hintText1 = (TextView)view.findViewById(R.id.hintText1) ;
+        hintImage1 = (ImageView) view.findViewById(R.id.hintImage1);
+        hintNextButton1 = (Button) view.findViewById(R.id.hintNextButton1);
+        close1 = (ImageView) view.findViewById(R.id.close1);
+
+        epicDialog2 = new Dialog(getContext());
+        hintText2 = (TextView)view.findViewById(R.id.hintText2) ;
+        hintImage2 = (ImageView) view.findViewById(R.id.hintImage2);
+        hintNextButton2 = (Button) view.findViewById(R.id.hintNextButton2);
+        close2 = (ImageView)view.findViewById(R.id.close2);
+
+        epicDialog3 = new Dialog(getContext());
+        hintText3 = (TextView)view.findViewById(R.id.hintText3) ;
+        hintImage3 = (ImageView) view.findViewById(R.id.hintImage3);
         hintCloseButton = (Button) view.findViewById(R.id.hintCloseButton);
+        close3 = (ImageView)view.findViewById(R.id.close3);
 
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -252,20 +279,75 @@ public class ManageFragment extends Fragment {
     //hint 팝업창을 띄우기 위한 method
     public void showHintPopup(){
 
-        epicDialog.setContentView(R.layout.custom_popup_hint);
-        hintText = (TextView)epicDialog.findViewById(R.id.hintText);
-        hintImage = (ImageView) epicDialog.findViewById(R.id.hintImage);
-        hintCloseButton = (Button)epicDialog.findViewById(R.id.hintCloseButton);
+        epicDialog1.setContentView(R.layout.custom_popup_potname_hint);
+        hintText1 = (TextView)epicDialog1.findViewById(R.id.hintText1);
+        hintImage1 = (ImageView) epicDialog1.findViewById(R.id.hintImage1);
+        hintNextButton1 = (Button)epicDialog1.findViewById(R.id.hintNextButton1);
+        close1 = (ImageView) epicDialog1.findViewById(R.id.close1);
+
+        epicDialog2.setContentView(R.layout.custome_popup_sensor_hint);
+        hintText2 = (TextView)epicDialog2.findViewById(R.id.hintText2);
+        hintImage2 = (ImageView) epicDialog2.findViewById(R.id.hintImage2);
+        hintNextButton2 = (Button)epicDialog2.findViewById(R.id.hintNextButton2);
+        close2 = (ImageView)epicDialog2.findViewById(R.id.close2);
+
+        epicDialog3.setContentView(R.layout.custom_popup_button_hint);
+        hintText3 = (TextView)epicDialog3.findViewById(R.id.hintText3);
+        hintImage3 = (ImageView) epicDialog3.findViewById(R.id.hintImage3);
+        hintCloseButton = (Button)epicDialog3.findViewById(R.id.hintCloseButton);
+        close3 = (ImageView)epicDialog3.findViewById(R.id.close3);
+
+        hintNextButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                epicDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                epicDialog2.show();
+            }
+        });
+
+        hintNextButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                epicDialog3.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                epicDialog3.show();
+            }
+        });
 
         hintCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                epicDialog.dismiss();
+                epicDialog1.dismiss();
+                epicDialog2.dismiss();
+                epicDialog3.dismiss();
             }
         });
 
-        epicDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        epicDialog.show();
+        close1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                epicDialog1.dismiss();
+            }
+        });
+
+        close2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                epicDialog1.dismiss();
+                epicDialog2.dismiss();
+            }
+        });
+
+        close3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                epicDialog1.dismiss();
+                epicDialog2.dismiss();
+                epicDialog3.dismiss();
+            }
+        });
+
+        epicDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        epicDialog1.show();
 
     }
     private String name;
