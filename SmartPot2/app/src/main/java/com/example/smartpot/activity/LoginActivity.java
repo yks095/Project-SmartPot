@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -41,8 +45,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
+import java.util.List;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     private AlertDialog dialog;
     private static int rowNum;
@@ -58,11 +63,15 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences appData;
     private boolean saveLoginData;
 
+    @NotEmpty(message = "아이디를 입력해주세요")
     private EditText idText;
+    @NotEmpty(message = "비밀번호를 입력해주세요")
     private EditText passwordText;
     private Button loginButton2;
-    TextView registerButton;
+    private TextView registerButton;
     private CheckBox checkBox;
+    private boolean validationCheck = false;
+    private Validator validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +86,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton2 = (Button) findViewById(R.id.loginButton);
         registerButton = (TextView) findViewById(R.id.registerButton);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
-
+        validator = new Validator(this);
+        validator.setValidationListener(this);
         //로그인 정보 유지 check한 후 로그인 성공 시 다음 로그인부터 실행
         if (saveLoginData) {
             idText.setText(id2);
@@ -103,6 +113,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 task = new PhpDo();
                 task.execute(userId);
+
+                validator.validate();
+                if(validationCheck) return;
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -234,6 +247,23 @@ public class LoginActivity extends AppCompatActivity {
         this.id = id;
     }
 
+    @Override
+    public void onValidationSucceeded() {
+        validationCheck = false;
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors){
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(this);
+            if(view instanceof EditText) ((EditText)view).setError(message);
+            else Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+        }
+        validationCheck = true;
+
+    }
 
 
     private class PhpDo extends AsyncTask<String, Void, String> {

@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,10 +20,15 @@ import com.example.smartpot.R;
 import com.example.smartpot.requests.FlowerRegisterRequest;
 import com.example.smartpot.requests.PotCodeRequest;
 import com.example.smartpot.requests.PotRequest;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import org.json.JSONObject;
 
-public class FlowerRegisterActivity extends AppCompatActivity {
+import java.util.List;
+
+public class FlowerRegisterActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     private ArrayAdapter adapter;
     private Spinner spinner;
@@ -34,15 +41,28 @@ public class FlowerRegisterActivity extends AppCompatActivity {
     private String potName;
     private String userID = loginActivity.getId();
 
+
+    @NotEmpty(message = "Serial Code를 입력해주세요")
+    private EditText potCodeText;
+    @NotEmpty(message = "화분 이름을 입력해주세요")
+    private EditText potNameText;
+
+    private Validator validator;
+    private boolean validationCheck = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flower_register);
 
-        final EditText potCodeText = (EditText) findViewById(R.id.potCodeText);
-        final EditText potNameText = (EditText) findViewById(R.id.potNameText);
+        potCodeText = (EditText) findViewById(R.id.potCodeText);
+        potNameText = (EditText) findViewById(R.id.potNameText);
 
         final Button potCodeButton = (Button) findViewById(R.id.potCodeButton);
+
+        validator = new Validator(this);
+        validator.setValidationListener(this);
+
         potCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +78,7 @@ public class FlowerRegisterActivity extends AppCompatActivity {
                     dialog.show();
                     return;
                 }
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -118,6 +139,9 @@ public class FlowerRegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                validator.validate();
+                if(validationCheck) return;
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 
                     @Override
@@ -172,5 +196,22 @@ public class FlowerRegisterActivity extends AppCompatActivity {
     }
     public static String getPotSerial() {
         return potSerial;
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+        validationCheck = false;
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors){
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(this);
+            if(view instanceof EditText) ((EditText)view).setError(message);
+            else Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+        }
+        validationCheck = true;
     }
 }

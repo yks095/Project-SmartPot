@@ -81,7 +81,6 @@ public class MemberFragment extends Fragment {
         final Button updatePasswordButton = (Button) view.findViewById(R.id.updatePasswordButton);
         final TextView nowUserID = (TextView) view.findViewById(R.id.nowUserID);
 
-
         nowUserID.setText(loginActivity.getId());
         String userID = loginActivity.getId();
         task = new phpdo();

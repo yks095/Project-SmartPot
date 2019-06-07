@@ -6,4 +6,10 @@
     <color name="colorWarning">#ED00CB</color>
     <color name="colorGray">#8C8C8C</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorGreenLight">#abffc0</color>
+    <color name="colorRed">#ff3943</color>
+    <color name="colorRedDark">#801b20</color>
+    <color name="colorGreen">#247b37</color>
+    <color name="colorGreen1">#00BCD4</color>
+    <color name="colorBlack">#000000</color>
 </resources>

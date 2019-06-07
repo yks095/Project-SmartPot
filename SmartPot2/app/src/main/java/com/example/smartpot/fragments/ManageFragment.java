@@ -1,6 +1,9 @@
 package com.example.smartpot.fragments;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -47,6 +52,11 @@ public class ManageFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    Dialog epicDialog;
+    ImageView hintImage;
+    TextView hintText;
+    Button hintCloseButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -87,6 +97,7 @@ public class ManageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_manage, container, false);
         Button autoButton = (Button) view.findViewById(R.id.autoButton);
+        ImageButton hintButton = (ImageButton) view.findViewById(R.id.hintButton);
         potName = (TextView) view.findViewById(R.id.potName);
         nowCds = (TextView) view.findViewById(R.id.nowCds);
         nowPotTemp = (TextView) view.findViewById(R.id.nowPotTemp);
@@ -94,6 +105,11 @@ public class ManageFragment extends Fragment {
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.manage_refresh_layout);
         task = new phpdo();
         task.execute(userID);
+
+        epicDialog = new Dialog(getContext());
+        hintText = (TextView)view.findViewById(R.id.hintText) ;
+        hintImage = (ImageView) view.findViewById(R.id.hintImage);
+        hintCloseButton = (Button) view.findViewById(R.id.hintCloseButton);
 
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,6 +229,13 @@ public class ManageFragment extends Fragment {
             }
         });
 
+        hintButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showHintPopup();
+            }
+        });
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -226,6 +249,25 @@ public class ManageFragment extends Fragment {
         return view;
     }
 
+    //hint 팝업창을 띄우기 위한 method
+    public void showHintPopup(){
+
+        epicDialog.setContentView(R.layout.custom_popup_hint);
+        hintText = (TextView)epicDialog.findViewById(R.id.hintText);
+        hintImage = (ImageView) epicDialog.findViewById(R.id.hintImage);
+        hintCloseButton = (Button)epicDialog.findViewById(R.id.hintCloseButton);
+
+        hintCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                epicDialog.dismiss();
+            }
+        });
+
+        epicDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        epicDialog.show();
+
+    }
     private String name;
     private String water;
     private String waterSensor;
@@ -301,7 +343,7 @@ public class ManageFragment extends Fragment {
                 nowCds.setText("부족");
                 nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.empty_water, 0, 0, 0);
             }
-            if (tempSensor.equals("null")) {
+            if ("null".equals(tempSensor)) {
                 nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowtemp, 0, 0, 0);
                 nowPotTemp.setText("없음");
             } else if (Integer.parseInt(tempSensor) > 30) {

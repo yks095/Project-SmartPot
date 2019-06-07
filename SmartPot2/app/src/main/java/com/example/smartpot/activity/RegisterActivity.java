@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,10 +18,18 @@ import com.example.smartpot.requests.PotCodeRequest;
 import com.example.smartpot.requests.PotRequest;
 import com.example.smartpot.requests.RegisterRequest;
 import com.example.smartpot.requests.ValidateRequest;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Email;
+import com.mobsandgeeks.saripaar.annotation.Length;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Password;
 
 import org.json.JSONObject;
 
-public class RegisterActivity extends AppCompatActivity {
+import java.util.List;
+
+public class RegisterActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     private String userID;
     private String userPassword;
@@ -28,19 +37,36 @@ public class RegisterActivity extends AppCompatActivity {
     private String userEmail;
     private AlertDialog dialog;
     private boolean validate = false;
+    private boolean validationCheck = false;
+    @Length(min = 4, max = 10, message = "최소4 ~ 최대10")
+    @NotEmpty(message = "ID를 입력해주세요")
+    EditText idText;
+
+    @Password(min = 6, scheme = Password.Scheme.ALPHA_NUMERIC_MIXED_CASE_SYMBOLS, message = "비밀번호는 숫자, 영문대문자, 영문소문자, 특수문자를 조합하여 입력")
+    @NotEmpty(message = "비밀번호를 입력해주세요")
+    EditText passwordText;
+
+    @Email(message = "이메일 형식을 맞춰주세요")
+    @NotEmpty(message = "이메일을 입력해주세요")
+    EditText emailText;
+
+    private Validator validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText idText = (EditText) findViewById(R.id.idText);
-        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
-        final EditText emailText = (EditText) findViewById(R.id.emailText);
+        idText = (EditText) findViewById(R.id.idText);
+        passwordText = (EditText) findViewById(R.id.passwordText);
+        emailText = (EditText) findViewById(R.id.emailText);
 
         RadioGroup genderGroup = (RadioGroup) findViewById(R.id.genderGroup);
         int genderGroupID = genderGroup.getCheckedRadioButtonId();
         userGender = ((RadioButton) findViewById(genderGroupID)).getText().toString();
+
+        validator = new Validator(this);
+        validator.setValidationListener(this);
 
         genderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -128,10 +154,17 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                validator.validate();
+                if(validationCheck) return;
+
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+
                     @Override
                     public void onResponse(String response) {
                         try {
+                            System.out.println("온리스폰스 진입");
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
@@ -171,4 +204,20 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onValidationSucceeded() {
+        validationCheck = false;
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors){
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(this);
+            if(view instanceof EditText) ((EditText)view).setError(message);
+            else Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+        }
+        validationCheck = true;
+    }
 }
