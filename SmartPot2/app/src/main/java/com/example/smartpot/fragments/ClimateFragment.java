@@ -299,8 +299,8 @@ public class ClimateFragment extends Fragment {
     private void setTime(){
         while (true) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd aaa hh:mm:ss(E)");
-            //System.currentTimeMillis()는 영국 기준시를 들고 오기 때문에 한국과 9시간 차이남.
-            weather_tv[0].setText(sdf.format(new Date(System.currentTimeMillis() + 32400000)));
+            //System.currentTimeMillis()는 영국 기준시를 들고 오기 때문에 한국과 9시간 차이남.  + 32400000
+            weather_tv[0].setText(sdf.format(new Date(System.currentTimeMillis())));
 
             try {
                 Thread.sleep(1000);
