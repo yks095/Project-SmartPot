@@ -1,10 +1,33 @@
 package com.example.smartpot;
 
+import java.util.Arrays;
+
 public class Dictionary {
 
     private String name;
     private String image;
-    private String content;
+    private String[] attrs;
+    private String[] values;
+
+    public Dictionary() {
+    }
+
+    public Dictionary(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
+
+    public Dictionary(String[] attrs, String[] values) {
+        this.attrs = attrs;
+        this.values = values;
+    }
+
+    public Dictionary(String name, String image, String[] attrs, String[] values) {
+        this.name = name;
+        this.image = image;
+        this.attrs = attrs;
+        this.values = values;
+    }
 
     public String getName() {
         return name;
@@ -22,12 +45,19 @@ public class Dictionary {
         this.image = image;
     }
 
-    public String getContent() {
-        return content;
+    public String[] getAttrs() {
+        return attrs;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setAttrs(String[] attrs) {
+        this.attrs = attrs;
+    }
+
+    public String[] getValues() {
+        return values;
+    }
+    public void setValues(String[] values) {
+        this.values = values;
     }
 
     @Override
@@ -35,13 +65,8 @@ public class Dictionary {
         return "Dictionary{" +
                 "name='" + name + '\'' +
                 ", image='" + image + '\'' +
-                ", content='" + content + '\'' +
+                ", attrs=" + Arrays.toString(attrs) +
+                ", values=" + Arrays.toString(values) +
                 '}';
-    }
-
-    public Dictionary(String name, String image, String content) {
-        this.name = name;
-        this.image = image;
-        this.content = content;
     }
 }
