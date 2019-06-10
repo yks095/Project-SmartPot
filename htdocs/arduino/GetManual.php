@@ -7,7 +7,7 @@
   $row = mysqli_fetch_array($result);
 
   if($row[0] == '1'){
-    $query = "SELECT pumptime FROM smartpot where potCode = '$potCode' ";
+    $query = "SELECT manualpumptime FROM smartpot where potCode = '$potCode' ";
     $result2 = mysqli_query($con, $query);
   }
 

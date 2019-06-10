@@ -69,8 +69,14 @@ public class ManageFragment extends Fragment {
     Dialog epicDialog3;
     ImageView hintImage3;
     TextView hintText3;
-    Button hintCloseButton;
+    Button hintNextButton3;
     ImageView close3;
+    //time hint
+    Dialog epicDialog4;
+    ImageView hintImage4;
+    TextView hintText4;
+    Button hintCloseButton;
+    ImageView close4;
 
     private OnFragmentInteractionListener mListener;
 
@@ -116,6 +122,7 @@ public class ManageFragment extends Fragment {
         nowCds = (TextView) view.findViewById(R.id.nowCds);
         nowPotTemp = (TextView) view.findViewById(R.id.nowPotTemp);
         nowPotWater = (TextView) view.findViewById(R.id.nowPotWater);
+        updateDate = (TextView) view.findViewById(R.id.updateDate);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.manage_refresh_layout);
         task = new phpdo();
         task.execute(userID);
@@ -135,8 +142,14 @@ public class ManageFragment extends Fragment {
         epicDialog3 = new Dialog(getContext());
         hintText3 = (TextView)view.findViewById(R.id.hintText3) ;
         hintImage3 = (ImageView) view.findViewById(R.id.hintImage3);
-        hintCloseButton = (Button) view.findViewById(R.id.hintCloseButton);
+        hintNextButton3 = (Button) view.findViewById(R.id.hintNextButton3);
         close3 = (ImageView)view.findViewById(R.id.close3);
+
+        epicDialog4 = new Dialog(getContext());
+        hintText4 = (TextView)view.findViewById(R.id.hintText4) ;
+        hintImage4 = (ImageView) view.findViewById(R.id.hintImage4);
+        hintCloseButton = (Button) view.findViewById(R.id.hintCloseButton);
+        close4 = (ImageView)view.findViewById(R.id.close4);
 
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -294,8 +307,14 @@ public class ManageFragment extends Fragment {
         epicDialog3.setContentView(R.layout.custom_popup_button_hint);
         hintText3 = (TextView)epicDialog3.findViewById(R.id.hintText3);
         hintImage3 = (ImageView) epicDialog3.findViewById(R.id.hintImage3);
-        hintCloseButton = (Button)epicDialog3.findViewById(R.id.hintCloseButton);
+        hintNextButton3 = (Button)epicDialog3.findViewById(R.id.hintNextButton3);
         close3 = (ImageView)epicDialog3.findViewById(R.id.close3);
+
+        epicDialog4.setContentView(R.layout.custome_popup_time_hint);
+        hintText4 = (TextView)epicDialog4.findViewById(R.id.hintText4);
+        hintImage4 = (ImageView) epicDialog4.findViewById(R.id.hintImage4);
+        hintCloseButton = (Button)epicDialog4.findViewById(R.id.hintCloseButton);
+        close4 = (ImageView)epicDialog4.findViewById(R.id.close4);
 
         hintNextButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,12 +332,21 @@ public class ManageFragment extends Fragment {
             }
         });
 
+        hintNextButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                epicDialog4.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                epicDialog4.show();
+            }
+        });
+
         hintCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 epicDialog1.dismiss();
                 epicDialog2.dismiss();
                 epicDialog3.dismiss();
+                epicDialog4.dismiss();
             }
         });
 
@@ -346,6 +374,16 @@ public class ManageFragment extends Fragment {
             }
         });
 
+        close4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                epicDialog1.dismiss();
+                epicDialog2.dismiss();
+                epicDialog3.dismiss();
+                epicDialog4.dismiss();
+            }
+        });
+
         epicDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         epicDialog1.show();
 
@@ -354,10 +392,12 @@ public class ManageFragment extends Fragment {
     private String water;
     private String waterSensor;
     private String tempSensor;
+    private String updateTime;
     TextView potName;
     TextView nowCds;
     TextView nowPotTemp;
     TextView nowPotWater;
+    TextView updateDate;
 
     phpdo task;
 
@@ -408,6 +448,7 @@ public class ManageFragment extends Fragment {
                     water = object.getString("cds_sensor");
                     waterSensor = object.getString("sensor");
                     tempSensor = object.getString("tempSensor");
+                    updateTime = object.getString("update_time");
                     break;
                 }
 
@@ -418,10 +459,10 @@ public class ManageFragment extends Fragment {
             if (water.equals("null")) {
                 nowCds.setText("없음");
                 nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.empty_water, 0, 0, 0);
-            } else if (water.equals("1")) {
+            } else if (water.equals("0")) {
                 nowCds.setText("충분");
                 nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.full_water, 0, 0, 0);
-            } else if (water.equals("0")) {
+            } else if (water.equals("1")) {
                 nowCds.setText("부족");
                 nowCds.setCompoundDrawablesWithIntrinsicBounds(R.drawable.empty_water, 0, 0, 0);
             }
@@ -442,6 +483,11 @@ public class ManageFragment extends Fragment {
                 nowPotWater.setText("없음");
             } else {
                 nowPotWater.setText(waterSensor);
+            }
+            if (updateTime.equals("null")) {
+                updateDate.setText("없음");
+            } else {
+                updateDate.setText(updateTime);
             }
         }
     }

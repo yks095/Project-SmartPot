@@ -6,12 +6,12 @@
   }
 
   $userID = $_GET['userID'];
-  $result = mysqli_query($con, "SELECT potName, cds_sensor, moisture_sensor, temperature_sensor FROM SMARTPOT WHERE userID = '$userID' ");
+  $result = mysqli_query($con, "SELECT potName, cds_sensor, moisture_sensor, temperature_sensor, update_time FROM SMARTPOT WHERE userID = '$userID' ");
 
   $response = array();
 
   while ($row = mysqli_fetch_array($result)) {
-    array_push($response, array("potName"=>$row[0],"cds_sensor"=>$row[1],"sensor"=>$row[2], "tempSensor"=>$row[3]));
+    array_push($response, array("potName"=>$row[0],"cds_sensor"=>$row[1],"sensor"=>$row[2], "tempSensor"=>$row[3], "update_time"=>$row[4]));
   }
   echo json_encode(array("response"=>$response), JSON_UNESCAPED_UNICODE);
 
