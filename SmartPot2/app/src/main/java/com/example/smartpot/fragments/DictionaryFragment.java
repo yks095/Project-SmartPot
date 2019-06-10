@@ -1,6 +1,7 @@
 package com.example.smartpot.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -18,7 +20,10 @@ import android.widget.ListView;
 import com.example.smartpot.Dictionary;
 import com.example.smartpot.DictionaryAdapter;
 import com.example.smartpot.R;
+import com.example.smartpot.activity.InfoActivity;
+import com.example.smartpot.activity.LoginActivity;
 import com.example.smartpot.activity.MainActivity;
+import com.example.smartpot.activity.UpdateMemberActivity;
 import com.example.smartpot.enums.ServerURL;
 
 import org.apache.http.HttpResponse;
@@ -33,16 +38,27 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class DictionaryFragment extends Fragment{
-//    ManageFragment manageFragment;
+    //    ManageFragment manageFragment;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
     private OnFragmentInteractionListener mListener;
+
+    phpdo task;
+    private ListView dicList;
+    private DictionaryAdapter dictionaryAdapter;
+    private List<Dictionary> dictionaries;
+    private List<Dictionary> searchDictionaries;
+    private EditText searchText;
+    static String searchName;
+    private ImageButton cancelButton;
 
     public DictionaryFragment() {
     }
@@ -56,17 +72,7 @@ public class DictionaryFragment extends Fragment{
         return fragment;
     }
 
-    @Override
-    public void onResume() {
-        searchText.setText(null);
-        dictionaries = new ArrayList<Dictionary>();
-        dictionaryAdapter = new DictionaryAdapter(getContext(), dictionaries);
-        dicList.setAdapter(dictionaryAdapter);
-        dicList.clearTextFilter();
-        super.onResume();
-    }
-
-    @Override
+    @Override   // 프래그먼트 생성시 호출, 일시정지되거나 중단되었다가 재개되었을 때 유지하고자 하는 것을 초기화
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -76,30 +82,40 @@ public class DictionaryFragment extends Fragment{
     }
 
 
-
-    phpdo task;
-
-    private ListView dicList;
-    private DictionaryAdapter dictionaryAdapter;
-    private List<Dictionary> dictionaries;
-    private List<Dictionary> searchDictionaries;
-    private EditText searchText;
-    static String searchName;
-    @Override
+    @Override   // 프래그먼트가 자신의 UI를 처음으로 그릴 시간이 되면 호출
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
 
-//        manageFragment = new ManageFragment();
+        dicList = (ListView) view.findViewById(R.id.dicList);
+        searchText = (EditText) view.findViewById(R.id.searchText);
+        cancelButton = (ImageButton) view.findViewById(R.id.cancelButton);
 
-        System.out.println("딕셔너리 프래그먼트 진입");
+        return view;
+    }
+
+
+    @Override   // 프래그먼트가 화면에 완전히 그렸으며, 사용자와 상호작용 가능
+    public void onResume() {
 
         task = new phpdo();
         task.execute();
 
-        dicList = (ListView) view.findViewById(R.id.dicList);
-        searchText = (EditText) view.findViewById(R.id.searchText);
-        ImageButton cancelButton = (ImageButton) view.findViewById(R.id.cancelButton);
+        searchText.setText(null);
+
+        dicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent dicIntent = new Intent(getContext(), InfoActivity.class);
+                dicIntent.putExtra("name", dictionaries.get(position).getName());
+                dicIntent.putExtra("image", dictionaries.get(position).getImage());
+//                dicIntent.putExtra("content", dictionaries.get(position).getContent());
+
+                getContext().startActivity(dicIntent);
+
+            }
+        });
+
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,8 +126,8 @@ public class DictionaryFragment extends Fragment{
         dictionaries = new ArrayList<Dictionary>();
         dictionaryAdapter = new DictionaryAdapter(getContext(), dictionaries);
         dicList.setAdapter(dictionaryAdapter);
-
         dicList.setTextFilterEnabled(true);
+
         searchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -132,17 +148,27 @@ public class DictionaryFragment extends Fragment{
                 dictionaryAdapter = new DictionaryAdapter(getContext(), searchDictionaries);
                 dicList.setAdapter(dictionaryAdapter);
 
+                dicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent dicIntent = new Intent(getContext(), InfoActivity.class);
+                        dicIntent.putExtra("name", searchDictionaries.get(position).getName());
+                        dicIntent.putExtra("image", searchDictionaries.get(position).getImage());
+
+                        getContext().startActivity(dicIntent);
+
+                    }
+                });
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 if(searchText.getText().length() == 0)
                     dicList.clearTextFilter();
-
             }
         });
-        return view;
+
+        super.onResume();
     }
 
     private class phpdo extends AsyncTask<String, Void, String> {
@@ -182,15 +208,16 @@ public class DictionaryFragment extends Fragment{
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-                String name, image, content;
+                String name, image;
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
+
                     name = object.getString("name");
                     image = object.getString("image");
-                    content = object.getString("content");
-                    Dictionary dictionary = new Dictionary(name, image, content);
-                    dictionaries.add(dictionary);
 
+
+                    Dictionary dictionary = new Dictionary(name, image);
+                    dictionaries.add(dictionary);
                     dictionaryAdapter.notifyDataSetChanged();
                     count++;
                 }
@@ -208,7 +235,12 @@ public class DictionaryFragment extends Fragment{
         }
     }
 
-    @Override
+    @Override   // 프래그먼트 상태를 완전히 종료 할 수 있도록 호출
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override   // 프래그먼트가 액티비티와 연결이 완전히 끊기기 직전에 호출
     public void onDetach() {
         super.onDetach();
         mListener = null;

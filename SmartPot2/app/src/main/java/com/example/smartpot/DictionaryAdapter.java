@@ -1,15 +1,18 @@
 package com.example.smartpot;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.smartpot.activity.UpdateMemberActivity;
 
 import java.util.List;
 
@@ -44,16 +47,12 @@ public class DictionaryAdapter extends BaseAdapter {
         View view = convertView;
         final ViewHolder holder;
 
-
-
         if(view == null)    {
             view = View.inflate(context, R.layout.dictionary, null);
             holder = new ViewHolder();
 
             holder.name = (TextView) view.findViewById(R.id.nameText);
             holder.image = (ImageView) view.findViewById(R.id.imageV);
-            holder.content = (TextView) view.findViewById(R.id.contentText);
-            holder.hideLinear  = (LinearLayout) view.findViewById(R.id.hideLinear);
             view.setTag(holder);
         }
         else
@@ -66,25 +65,11 @@ public class DictionaryAdapter extends BaseAdapter {
             Glide.with(holder.image).load(dictionaries.get(position).getImage()).apply(RequestOptions.circleCropTransform()).into(holder.image);
         }
         holder.name.setText(dictionaries.get(position).getName());
-        holder.content.setText(dictionaries.get(position).getContent());
-        holder.hideLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (holder.content.getVisibility() == View.GONE)
-                    holder.content.setVisibility(View.VISIBLE);
-                else
-                    holder.content.setVisibility(View.GONE);
-            }
-        });
-
-
         return view;
     }
 
     static class ViewHolder {
         TextView name;
         ImageView image;
-        TextView content;
-        LinearLayout hideLinear;
     }
 }
