@@ -8,7 +8,7 @@
 
 
   if($row[0] != null){
-    $query2 = "SELECT pumptime FROM flower where idx = $row[0] ";
+    $query2 = "SELECT autoPumptime FROM flower where idx = $row[0] ";
     $result2 = mysqli_query($con, $query2);
   }
 

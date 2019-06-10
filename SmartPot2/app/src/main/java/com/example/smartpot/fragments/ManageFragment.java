@@ -43,6 +43,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
+import java.nio.DoubleBuffer;
 
 
 public class ManageFragment extends Fragment {
@@ -428,13 +429,13 @@ public class ManageFragment extends Fragment {
             if ("null".equals(tempSensor)) {
                 nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowtemp, 0, 0, 0);
                 nowPotTemp.setText("없음");
-            } else if (Integer.parseInt(tempSensor) > 30) {
+            } else if (Double.parseDouble(tempSensor) > 30) {
                 nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hightemp, 0, 0, 0);
                 nowPotTemp.setText(tempSensor + "℃");
-            } else if (15 <= Integer.parseInt(tempSensor) && Integer.parseInt(tempSensor) <= 30) {
+            } else if (15 <= Double.parseDouble(tempSensor) && Double.parseDouble(tempSensor) <= 30) {
                 nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_halftemp, 0, 0, 0);
                 nowPotTemp.setText(tempSensor + "℃");
-            } else if (15 > Integer.parseInt(tempSensor)) {
+            } else if (15 > Double.parseDouble(tempSensor)) {
                 nowPotTemp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowtemp, 0, 0, 0);
                 nowPotTemp.setText(tempSensor + "℃");
             }

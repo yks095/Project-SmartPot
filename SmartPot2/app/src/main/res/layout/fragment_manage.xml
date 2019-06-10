@@ -137,7 +137,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edge2"
                 android:fontFamily="@font/bmhannaair_ttf"
-                android:text="AUTO"
+                android:text="자동 급수"
                 android:textSize="15dp"
                 android:textColor="#179F3A"
                 android:textStyle="bold" />
@@ -152,7 +152,7 @@
                 android:textSize="15dp"
                 android:background="@drawable/edge2"
                 android:fontFamily="@font/bmhannaair_ttf"
-                android:text="MANUAL"
+                android:text="수동 급수"
                 android:textColor="#179F3A"
                 android:textStyle="bold"
 

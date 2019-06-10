@@ -37,7 +37,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.jsoup.helper.HttpConnection;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -90,15 +92,12 @@ public class ClimateFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     private LoginActivity loginActivity = new LoginActivity();
 
-    private String tempSensor;
-    private String highTemp;
-    private String lowTemp;
-//    ImageView humidity = (ImageView)findVi(R.id.humidity);
-
-    static int counter = 0;
     static ImageView humidity; // ImageView를 class내부에서 사용하기 위해서는 static으로 선언해줘야 함
     static ImageView cast;
-    //    static LinearLayout back;
+    static TextView weather_tv1;
+    static TextView weather_tv2;
+    static TextView weather_tv3;
+    static TextView weather_tv4;
     static TextView weather;
     static TextView weather_1hr_temp; // 1시간 후 기온을 받아오기 위한 textview
     static TextView weather_1hr_mois; // 1시간 후 습도를 받아오기 위한 textview
@@ -112,25 +111,25 @@ public class ClimateFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_climate, container, false);
         final String userID = loginActivity.getId();
 
-        weather_tv[0] = (TextView) view.findViewById(R.id.weather_tv_time);
-        weather_tv[1] = (TextView) view.findViewById(R.id.weather_tv_now);
-        weather_tv[2] = (TextView) view.findViewById(R.id.weather_tv_temp);
-        weather_tv[3] = (TextView) view.findViewById(R.id.weather_tv_mois);
+        weather_tv1 = (TextView) view.findViewById(R.id.weather_tv_time);
+        weather_tv2 = (TextView) view.findViewById(R.id.weather_tv_now);
+        weather_tv3 = (TextView) view.findViewById(R.id.weather_tv_temp);
+        weather_tv4 = (TextView) view.findViewById(R.id.weather_tv_mois);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (true) {
-//                    new WeatherAsynTask(weather_tv).execute();
-//                    try {
-//                        Thread.sleep(10000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    new WeatherAsynTask().execute();
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
 
         new Thread(new Runnable() {
             @Override
@@ -138,7 +137,7 @@ public class ClimateFragment extends Fragment {
                 setTime();
             }
         }).start();
-        new WeatherAsynTask(weather_tv).execute();
+//        new WeatherAsynTask().execute();
 
         humidity = (ImageView) view.findViewById(R.id.humidity);
         cast = (ImageView)view.findViewById(R.id.cast);
@@ -152,7 +151,7 @@ public class ClimateFragment extends Fragment {
 
             @Override
             public void onRefresh() {
-                new WeatherAsynTask(weather_tv).execute();
+                new WeatherAsynTask().execute();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -187,11 +186,6 @@ public class ClimateFragment extends Fragment {
         private static final String URL2 = "http://www.weather.go.kr/weather/forecast/timeseries.jsp";
         private final String SELECTOR1 = "table[class = table_develop3] tbody tr:nth-child(1) td:nth-child(1), tr:nth-child(1) td:nth-child(2), tr:nth-child(1) td:nth-child(6), tr:nth-child(1) td:nth-child(10)  ";
         private final String SELECTOR2 = "div[class = time_weather1] dl dt[class = w_hour2], div[class = time_weather1] dl dd[class = time_weather1_left temp2],div[class = time_weather1] dl dd:nth-child(5)";
-
-        public WeatherAsynTask(TextView[]textView){
-            this.textView = textView;
-        }
-
 
         @Override
         protected String[] doInBackground (String...params){
@@ -250,10 +244,12 @@ public class ClimateFragment extends Fragment {
 
             System.out.println("s : " + Arrays.toString(s));
 
-            for (int i = 1; i < 4; i++) {
-                textView[i].setText(s[i]);
-            }
-
+//            for (int i = 1; i < 4; i++) {
+//                textView[i].setText(s[i]);
+//            }
+            weather_tv2.setText(s[1]);
+            weather_tv3.setText(s[2]);
+            weather_tv4.setText(s[3]);
             weather_1hr_temp.setText(s[5]);
             weather_1hr_mois.setText(s[6]);
 
@@ -300,7 +296,8 @@ public class ClimateFragment extends Fragment {
         while (true) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd aaa hh:mm:ss(E)");
             //System.currentTimeMillis()는 영국 기준시를 들고 오기 때문에 한국과 9시간 차이남.
-            weather_tv[0].setText(sdf.format(new Date(System.currentTimeMillis() + 32400000)));
+            weather_tv1.setText(sdf.format(new Date(System.currentTimeMillis() + 32400000)));
+//            weather_tv[0].setText(sdf.format(new Date(System.currentTimeMillis() + 32400000)));
 
             try {
                 Thread.sleep(1000);

@@ -107,14 +107,14 @@
                 android:id="@+id/registerButton"
                 />
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/faceBookButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:text="페이스북으로로그인"/>
+            <!--<com.facebook.login.widget.LoginButton-->
+                <!--android:id="@+id/faceBookButton"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_marginBottom="30dp"-->
+                <!--android:text="페이스북으로로그인"/>-->
 
             <TextView
                 android:layout_width="wrap_content"

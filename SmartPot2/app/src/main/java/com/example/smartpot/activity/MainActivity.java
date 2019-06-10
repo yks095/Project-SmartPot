@@ -99,10 +99,10 @@ public class MainActivity extends FragmentActivity {
                 if (isReceived) {
                     if ("null".equals(tempSensor)) {
                     } else {
-                        if (Integer.valueOf(tempSensor) >= Integer.valueOf(highTemp)) {
+                        if (Double.parseDouble(tempSensor) >= Double.parseDouble(highTemp)) {
                             notice();
                             status = 1;
-                        } else if (Integer.valueOf(tempSensor) <= Integer.valueOf(lowTemp)) {
+                        } else if (Double.parseDouble(tempSensor) <= Double.parseDouble(lowTemp)) {
                             notice();
                             status = 2;
                         }

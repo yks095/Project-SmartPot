@@ -24,13 +24,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.smartpot.R;
 import com.example.smartpot.enums.ServerURL;
 import com.example.smartpot.requests.LoginRequest;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
+//import com.facebook.CallbackManager;
+//import com.facebook.FacebookCallback;
+//import com.facebook.FacebookException;
+//import com.facebook.FacebookSdk;
+//import com.facebook.login.LoginManager;
+//import com.facebook.login.LoginResult;
+//import com.facebook.login.widget.LoginButton;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -57,8 +57,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     private String pwd = ""; //로그인 정보 저장을 위한 pwd
 
     PhpDo task;
-    LoginButton loginButton;
-    CallbackManager callbackManager;
+//    LoginButton loginButton;
+//    CallbackManager callbackManager;
 
     private SharedPreferences appData;
     private boolean saveLoginData;
@@ -165,9 +165,9 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
         });
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        initializeControls();
-        loginWithFB();
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//        initializeControls();
+//        loginWithFB();
 
     }
 
@@ -188,45 +188,45 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         pwd = appData.getString("PWD", "");
     }
 
-    public void initializeControls(){
-        callbackManager = CallbackManager.Factory.create();
-        loginButton = (LoginButton)findViewById(R.id.faceBookButton);
+//    public void initializeControls(){
+//        callbackManager = CallbackManager.Factory.create();
+//        loginButton = (LoginButton)findViewById(R.id.faceBookButton);
+//
+//    }
 
-    }
+//    private void loginWithFB(){
+//        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                LoginActivity.this.startActivity(intent);
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+//                dialog = builder.setMessage("계정을 다시 확인하세요.")
+//                        .setNegativeButton("다시 시도", null)
+//                        .create();
+//                dialog.show();
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+//                dialog = builder.setMessage("계정을 다시 확인하세요.")
+//                        .setNegativeButton("다시 시도", null)
+//                        .create();
+//                dialog.show();
+//            }
+//        });
+//    }
 
-    private void loginWithFB(){
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                LoginActivity.this.startActivity(intent);
-            }
-
-            @Override
-            public void onCancel() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                dialog = builder.setMessage("계정을 다시 확인하세요.")
-                        .setNegativeButton("다시 시도", null)
-                        .create();
-                dialog.show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                dialog = builder.setMessage("계정을 다시 확인하세요.")
-                        .setNegativeButton("다시 시도", null)
-                        .create();
-                dialog.show();
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        callbackManager.onActivityResult(requestCode, resultCode, data);
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
 
 
 
