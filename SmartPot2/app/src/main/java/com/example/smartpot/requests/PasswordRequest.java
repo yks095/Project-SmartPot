@@ -18,6 +18,8 @@ public class PasswordRequest extends StringRequest {
         parameters = new HashMap<>();
         parameters.put("userID", userID);
         parameters.put("userPassword", userPassword);
+        System.out.println("userID : "+userID);
+        System.out.println("userPassword : "+userPassword);
     }
 
     @Override

@@ -1,13 +1,18 @@
 package com.example.smartpot.activity;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -42,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     @NotEmpty(message = "ID를 입력해주세요")
     EditText idText;
 
-    @Password(min = 6, scheme = Password.Scheme.ALPHA_NUMERIC_MIXED_CASE_SYMBOLS, message = "비밀번호는 숫자, 영문대문자, 영문소문자, 특수문자를 조합하여 입력")
+    @Password(min = 6, scheme = Password.Scheme.ALPHA_NUMERIC_MIXED_CASE_SYMBOLS, message = "비밀번호는 최소 6글자 이상으로 숫자, 영문대문자, 영문소문자, 특수문자를 조합하여 입력")
     @NotEmpty(message = "비밀번호를 입력해주세요")
     EditText passwordText;
 
@@ -51,6 +56,10 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     EditText emailText;
 
     private Validator validator;
+
+    Dialog epicDialog;
+    TextView loginCompleteTextView;
+    ImageView loginCompleteImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +76,10 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
 
         validator = new Validator(this);
         validator.setValidationListener(this);
+
+        epicDialog = new Dialog(RegisterActivity.this);
+        loginCompleteTextView = (TextView)findViewById(R.id.loginCompleteText);
+        loginCompleteImageView = (ImageView)findViewById(R.id.loginCompleteImage);
 
         genderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -164,16 +177,23 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
                     @Override
                     public void onResponse(String response) {
                         try {
-                            System.out.println("온리스폰스 진입");
+
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                dialog = builder.setMessage("회원 등록에 성공했습니다.")
-                                        .setPositiveButton("확인", null)
-                                        .create();
-                                dialog.show();
-                                dialog.dismiss();
+
+                                epicDialog.setContentView(R.layout.custom_popup_user_register_complete);
+                                loginCompleteTextView = (TextView)epicDialog.findViewById(R.id.userRegisterCompleteText);
+                                loginCompleteImageView = (ImageView)epicDialog.findViewById(R.id.userRegisterCompleteImage);
+                                epicDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                epicDialog.show();
+
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+//                                dialog = builder.setMessage("회원 등록에 성공했습니다.")
+//                                        .setPositiveButton("확인", null)
+//                                        .create();
+//                                dialog.show();
+//                                dialog.dismiss();
                                 finish();
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -201,6 +221,10 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         if (dialog != null) {
             dialog.dismiss();
             dialog = null;
+        }
+
+        if(epicDialog != null){
+            epicDialog.dismiss();
         }
     }
 

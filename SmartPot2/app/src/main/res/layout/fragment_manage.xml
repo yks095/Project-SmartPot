@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
+    android:background="@color/colorWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v4.widget.SwipeRefreshLayout
@@ -40,6 +41,8 @@
             android:textColorHint="#000000"
             android:fontFamily="@font/bmhannaair_ttf"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+
 
             />
 
@@ -121,7 +124,27 @@
                 android:layout_marginRight="10dp"
                 />
 
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/updateDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="최근에 물 준 시간"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:drawableStart="@drawable/ic_access_time_black_24dp"
+            android:drawableLeft="@drawable/ic_access_time_black_24dp"
+            android:fontFamily="@font/bmhannaair_ttf"
+
+            android:layout_marginRight="10dp"
+            />
 
         <LinearLayout
             android:id="@+id/mainLayout"

@@ -1,7 +1,10 @@
 package com.example.smartpot.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +63,10 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     private boolean validationCheck = false;
     private Validator validator;
 
+    Dialog epicDialog;
+    TextView loginCompleteTextView;
+    ImageView loginCompleteImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +82,11 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         validator = new Validator(this);
         validator.setValidationListener(this);
+
+        epicDialog = new Dialog(LoginActivity.this);
+        loginCompleteTextView = (TextView)findViewById(R.id.loginCompleteText);
+        loginCompleteImageView = (ImageView)findViewById(R.id.loginCompleteImage);
+
         //로그인 정보 유지 check한 후 로그인 성공 시 다음 로그인부터 실행
         if (saveLoginData) {
             idText.setText(id2);
@@ -112,19 +125,24 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                             boolean success = jsonResponse.getBoolean("success");
                             if(success) {
                                 save(); //로그인 성공 시 id, pwd 저장
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                dialog = builder.setMessage("로그인에 성공했습니다.")
-                                        .setPositiveButton("확인", null)
-                                        .create();
-                                dialog.show();
+
+                                epicDialog.setContentView(R.layout.custom_popup_login_complete);
+                                loginCompleteTextView = (TextView)epicDialog.findViewById(R.id.loginCompleteText);
+                                loginCompleteImageView = (ImageView)epicDialog.findViewById(R.id.loginCompleteImage);
+                                epicDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                epicDialog.show();
 
                                 if(rowNum == 0)  {
                                     Intent intent = new Intent(LoginActivity.this, FlowerRegisterActivity.class);
                                     LoginActivity.this.startActivity(intent);
+
+
                                 }
                                 else {
+
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     LoginActivity.this.startActivity(intent);
+
                                 }
 
                             }
@@ -175,6 +193,10 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         if(dialog != null) {
             dialog.dismiss();
             dialog = null;
+        }
+
+        if(epicDialog != null){
+            epicDialog.dismiss();
         }
     }
 

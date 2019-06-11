@@ -1,7 +1,10 @@
 package com.example.smartpot.activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +13,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -41,6 +46,9 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
     private String potName;
     private String userID = loginActivity.getId();
 
+    Dialog epicDialog;
+    TextView loginCompleteTextView;
+    ImageView loginCompleteImageView;
 
     @NotEmpty(message = "Serial Code를 입력해주세요")
     private EditText potCodeText;
@@ -53,6 +61,7 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_flower_register);
 
         potCodeText = (EditText) findViewById(R.id.potCodeText);
@@ -62,6 +71,10 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
 
         validator = new Validator(this);
         validator.setValidationListener(this);
+
+        epicDialog = new Dialog(FlowerRegisterActivity.this);
+        loginCompleteTextView = (TextView)findViewById(R.id.loginCompleteText);
+        loginCompleteImageView = (ImageView)findViewById(R.id.loginCompleteImage);
 
         potCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +100,7 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if (success == true) {
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(FlowerRegisterActivity.this);
                                 dialog = builder.setMessage("사용할 수 있는 화분코드입니다.")
                                         .setPositiveButton("확인", null)
@@ -151,15 +165,23 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
                                 potSerial = potNameID;
-                                AlertDialog.Builder builder = new AlertDialog.Builder(FlowerRegisterActivity.this);
-                                builder.setMessage("완료");
-                                builder.setPositiveButton("확인",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                            }
-                                        });
-                                builder.show();
+
+                                epicDialog.setContentView(R.layout.custom_popup_flower_register_complete);
+                                loginCompleteTextView = (TextView)epicDialog.findViewById(R.id.flowerRegisterCompleteText);
+                                loginCompleteImageView = (ImageView)epicDialog.findViewById(R.id.flowerRegisterCompleteImage);
+                                epicDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                epicDialog.show();
+
+
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(FlowerRegisterActivity.this);
+//                                builder.setMessage("완료");
+//                                builder.setPositiveButton("확인",
+//                                        new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                            }
+//                                        });
+//                                builder.show();
                                 Intent mainIntent = new Intent(FlowerRegisterActivity.this, MainActivity.class);
                                 FlowerRegisterActivity.this.startActivity(mainIntent);
                             } else {
@@ -187,10 +209,6 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
                 RequestQueue queue = Volley.newRequestQueue(FlowerRegisterActivity.this);
                 queue.add(flowerRegisterRequest);
 
-
-
-
-
             }
         });
     }
@@ -203,6 +221,17 @@ public class FlowerRegisterActivity extends AppCompatActivity implements Validat
         validationCheck = false;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
+        if(epicDialog != null){
+            epicDialog.dismiss();
+        }
+    }
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
         for (ValidationError error : errors){

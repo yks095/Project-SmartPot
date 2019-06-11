@@ -5,11 +5,11 @@ import re
 
 mysql_config = {
     'host': 'localhost',
-    'user': 'userName',
-    'password': 'passwd',
-    'db': 'dbName',
+    'user': 'root',
+    'password': 'ssuk0625',
+    'db': 'android',
     'charset': 'utf8',
-    'port': 3306
+    'port': 3307
 }
 
 URL_PREFIX = 'https://terms.naver.com'

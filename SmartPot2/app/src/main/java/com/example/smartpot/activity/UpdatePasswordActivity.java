@@ -132,6 +132,10 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                         }
                     }
                 };
+                System.out.println("db 패스워드 : "+password);
+                System.out.println("입력한 패스워드"+nowPassword);
+                System.out.println("바꾸는거1"+userPassword);
+                System.out.println("바꾸는거2"+userPassword2);
                 if (nowPassword.equals(password) && userPassword.equals(userPassword2) ){
 
                     PasswordRequest passwordRequest = new PasswordRequest(userID, userPassword, responseListener);

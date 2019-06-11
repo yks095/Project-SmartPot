@@ -46,11 +46,13 @@ public class MainActivity extends FragmentActivity {
     private DictionaryFragment dictionaryFragment;
     private MemberFragment memberFragment;
     boolean isReceived = false;
-    int status;
 
+    int status;
+    LoginActivity loginActivity = new LoginActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         manageFragment = new ManageFragment();
@@ -121,7 +123,7 @@ public class MainActivity extends FragmentActivity {
         transaction.commit();
     }
 
-    private LoginActivity loginActivity = new LoginActivity();
+//    private LoginActivity loginActivity = new LoginActivity();
     private String highTemp;
     private String lowTemp;
     private String tempSensor;
