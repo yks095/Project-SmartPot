@@ -4,7 +4,7 @@
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   $userID = $_GET['userID'];
-  $result = mysqli_query($con, "SELECT userPassword FROM USER WHERE userID = '$userID' ");
+  $result = mysqli_query($con, "SELECT temperature_sensor FROM SMARTPOT WHERE userID = '$userID' ");
   $row = mysqli_fetch_array($result);
   $data = $row[0];
   echo $data;

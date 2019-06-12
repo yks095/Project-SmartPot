@@ -1,5 +1,5 @@
-<?php
-$con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+<?php include "./ServerName.php";
+$con = mysqli_connect($server_name, $user_name, $user_password, $db_name, $port);
   $sql="select * from dictionary ";     // SELECT 구문을 통해 DB를 불러옵니다.
   $result=mysqli_query($con,$sql);
   $response = array();

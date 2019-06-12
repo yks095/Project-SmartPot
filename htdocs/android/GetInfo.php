@@ -1,5 +1,6 @@
-<?php header('Content-Type: text/html; charset=UTF-8');
-$con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+<?php include "./ServerName.php";
+header('Content-Type: text/html; charset=UTF-8');
+$con = mysqli_connect($server_name, $user_name, $user_password, $db_name, $port);
 
   $name = $_GET["name"];
   $sql="select * from dictionary where name = '$name'";     // SELECT 구문을 통해 DB를 불러옵니다.

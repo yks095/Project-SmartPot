@@ -1,5 +1,5 @@
-<?php
-  $con = mysqli_connect("localhost", "root", "smartpot", "arduino", "3307");
+<?php include "./ServerName.php";
+  $con = mysqli_connect($server_name, $user_name, $user_password, $db_name, $port);
 
   $potCode = $_POST["potCode"];
   $userID = $_POST["userID"];
