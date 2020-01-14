@@ -8,3 +8,4 @@
 - [박동현](http://github.com/pdh6547)
 
 ### 개발환경 및 시스템 구성도
+- [보기](https://github.com/yks095/Project-SmartPot/blob/master/Report.pdf)
